@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +61,7 @@
               <ul class="sidebar-menu" id="nav-accordion">
 
               	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Welcome Admin</h5>
+              	  <h5 class="centered"> <?php echo $_SESSION['email']; ?> </h5>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>

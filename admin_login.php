@@ -1,3 +1,7 @@
+<?php
+session_start();
+$con=mysqli_connect("localhost","root","king","smart_users") OR die();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,47 +38,26 @@
 	  <div id="login-page">
 	  	<div class="container">
 
-		      <form class="form-login" action="index.html">
+		      <form class="form-login" action="admin_login.php" method="post">
 		        <h2 class="form-login-heading">sign in now</h2>
 		        <div class="login-wrap">
-		            <input type="text" class="form-control" placeholder="User ID" autofocus>
+		            <input type="text" name="email" class="form-control" placeholder="email" autofocus>
 		            <br>
-		            <input type="password" class="form-control" placeholder="Password">
+		            <input type="password" name="password"  class="form-control" placeholder="Password">
 		            <label class="checkbox">
 		                <span class="pull-right">
 		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
 
 		                </span>
 		            </label>
-		            <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
-		            <hr>
-
-		            <div class="login-social-link centered">
-		            <p>or you can sign in via your social network</p>
-		                <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-		                <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
-		            </div>
-		            <div class="registration">
-		                Don't have an account yet?<br/>
-		                <a class="" href="#">
-		                    Create an account
-		                </a>
-		            </div>
-
-		        </div>
-
+		            <button class="btn btn-theme btn-block" href="index.php" name='admin_login'  type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
 		          <!-- Modal -->
 		          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
 		              <div class="modal-dialog">
 		                  <div class="modal-content">
 		                      <div class="modal-header">
 		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                          <h4 class="modal-title">Forgot Password ?</h4>
-		                      </div>
-		                      <div class="modal-body">
-		                          <p>Enter your e-mail address below to reset your password.</p>
-		                          <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-
+		                          
 		                      </div>
 		                      <div class="modal-footer">
 		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
@@ -100,7 +83,25 @@
     <script>
         $.backstretch("assets/img/login-bg.jpg", {speed: 500});
     </script>
+    <?php
+  if(isset($_POST['admin_login'])){
+  $password=mysqli_real_escape_string($con,$_POST['password']);
+  $email=mysqli_real_escape_string($con,$_POST['email']);
 
+  $sel="select * from admin where email='$email' AND password='$password'";
+  $run=mysqli_query($con,$sel);
+  $check=mysqli_num_rows($run);
+  if($check==0)
+  {
+  	echo"<script>alert('password or email is not correct,try again!')</script>";
+  	exit();
+  }
+  else{
+  	$_SESSION['email']=$email;
+  	echo"<script>window.open('index.php','_self')</script>";
+  }
+  }
+  ?>
 
   </body>
 </html>
