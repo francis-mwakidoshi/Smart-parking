@@ -57,7 +57,7 @@ $con=mysqli_connect("localhost","root","king","smart_users") OR die();
 		                  <div class="modal-content">
 		                      <div class="modal-header">
 		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                          
+
 		                      </div>
 		                      <div class="modal-footer">
 		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
@@ -98,7 +98,7 @@ $con=mysqli_connect("localhost","root","king","smart_users") OR die();
   }
   else{
   	$_SESSION['email']=$email;
-  	echo"<script>window.open('index.php','_self')</script>";
+  	echo"<script>window.open('admin.php','_self')</script>";
   }
   }
   ?>
