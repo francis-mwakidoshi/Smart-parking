@@ -66,7 +66,7 @@
                           <span>Some sample parkings</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="gallery.php">Gallery</a></li>
+                          <li><a  href="gallery.php">View Parkings</a></li>
                       </ul>
                   </li>
 

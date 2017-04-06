@@ -83,7 +83,7 @@ else {
                           <span>Data Tables</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
+                          <li><a  href="basic_table.php">Basic Table</a></li>
                       </ul>
                   </li>
               </ul>
