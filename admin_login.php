@@ -1,6 +1,6 @@
 <?php
 session_start();
-$con=mysqli_connect("localhost","root","king","smart_users") OR die();
+require 'mysqlConnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
