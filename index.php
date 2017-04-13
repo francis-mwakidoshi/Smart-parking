@@ -4,6 +4,6 @@
     <title>smart-parking</title>
   </head>
   <body>
-    <h1>smart-parking</h1>
+    <h1>soon to be implemented</h1>
   </body>
   </html>
