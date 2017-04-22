@@ -122,6 +122,27 @@ function checkPass()
         message.innerHTML = "Passwords Do Not Match!"
     }
 }
+
+// validate email
+function email_validate(email)
+{
+var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
+   var status = document.getElementById("emailstatus");
+    if(regMail.test(email) == false)
+    {    
+    document.getElementById("emailstatus").innerHTML    = "<span class='warning'>Email address is not valid yet.</span>";
+        status.style.color = "#f44336";
+        $('#regBtn').prop('disabled', true);
+        $('#regOwner').prop('disabled', true);
+    }
+    else
+    {
+    document.getElementById("emailstatus").innerHTML  = "<span class='valid'>Thanks, you have entered a valid Email address!</span>"; 
+        status.style.color = "#a5d6a7";
+        $('#regBtn').prop('disabled', false);
+        $('#regOwner').prop('disabled', false);
+    }
+}
 </script>
   </head>
   <body>
@@ -148,7 +169,8 @@ function checkPass()
       <label for="name">Username:</label>
       <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
       <label for="email">Email</label>
-      <input type="text" name="email" id="email"  class="text ui-widget-content ui-corner-all">
+      <input type="email" id="email" name="email" placeholder="" class="text ui-widget-content ui-corner-all"  onchange="email_validate(this.value);" required>
+                  <p id="emailstatus"></p>
       <label for="password">Password</label>
      <input type="password" id="password" name="password" placeholder="" class="text ui-widget-content ui-corner-all" required>
       <label for="password">Confirm Password</label>
