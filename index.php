@@ -12,6 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+   
 <style>
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
 
@@ -154,7 +155,7 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
       </div>
     </div>
     <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal"  role="dialog" aria-hidden="true">
     <div class="modal-dialog">
     
       <!-- Modal content-->
