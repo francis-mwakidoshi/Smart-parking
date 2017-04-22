@@ -88,6 +88,41 @@ form button[type=submit] {
 }
 
 </style>
+<script type="text/javascript">
+function checkPass()
+{
+       
+    
+    //Store the password field objects into variables ...
+    var pass1 = document.getElementById('password');
+    var pass2 = document.getElementById('password_confirm');
+    //Store the Confimation Message Object ...
+    var message = document.getElementById('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    //Compare the values in the password field 
+    //and the confirmation field
+    if(pass1.value == pass2.value){
+        //The passwords match. 
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password 
+        pass2.style.backgroundColor = goodColor;
+
+        $('#regBtn').prop('disabled', false);
+        $('#regOwner').prop('disabled', false);
+    }else{
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+        $('#regBtn').prop('disabled', true);
+        $('#regOwner').prop('disabled', true);
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+    }
+}
+</script>
   </head>
   <body>
     <div class="row">
@@ -108,14 +143,16 @@ form button[type=submit] {
           <h4 class="modal-title">All form fields are required.</h4>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="form-horizontal" id="regForm">
     <fieldset>
       <label for="name">Name</label>
       <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
       <label for="email">Email</label>
       <input type="text" name="email" id="email"  class="text ui-widget-content ui-corner-all">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password"  class="text ui-widget-content ui-corner-all">
+     <input type="password" id="password" name="password" placeholder="" class="text ui-widget-content ui-corner-all" required>
+      <label for="password">Confirm Password</label>
+      <input type="password" class="text ui-widget-content ui-corner-all" id="password_confirm" name="password_confirm" placeholder=""  onkeyup="checkPass(); return false;" required>
  
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
@@ -123,7 +160,7 @@ form button[type=submit] {
   </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default">create account</button>
+          <button type="button" id="regBtn" class="btn btn-success">create account</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
