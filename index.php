@@ -145,7 +145,7 @@ function checkPass()
         <div class="modal-body">
           <form class="form-horizontal" id="regForm">
     <fieldset>
-      <label for="name">Name</label>
+      <label for="name">Username:</label>
       <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
       <label for="email">Email</label>
       <input type="text" name="email" id="email"  class="text ui-widget-content ui-corner-all">
