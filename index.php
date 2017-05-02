@@ -19,6 +19,33 @@ body {
 }
 .colors {
   color: #f9fbe7 !important;
+
+}
+
+.niceBg {
+  color: #f9fbe7 !important;
+  background: rgba(0,0,0,0.3);
+  border-top-color: rgba(255,255,255,.4);
+  border-left-color: rgba(255,255,255,.4);
+  border-bottom-color: rgba(60,60,60,.4);
+  border-right-color: rgba(60,60,60,.4)
+}
+
+.link {
+color: #84ffff !important;
+}
+
+.overlay{
+background: rgba(130,130,130,.3);
+height: 100%;
+background-size: cover;
+top: 1;
+left: 1;
+}
+
+.link:hover{
+ color: #f44336 !important;
+ border-bottom: 1px dashed #f44336;
 }
 
 form {
@@ -85,25 +112,30 @@ form button[type=submit] {
 </style>
   </head>
   <body>
+    <div class="overlay">
     <div class="row">
       <div class="container">
-            <div class="page-header">
-              <center><h1 class="colors">SMART PARKING <small>Web Portal</small></h1></center>
-            </div>
+         <div class="col-md-2"></div>
+         <div class="col-md-6">
+               <div class="page-header">
+                 <center><h1 class="colors">SMART PARKING <small class="colors">Web Portal</small></h1></center>
+               </div>
+         </div>
+         <div class="col-md-4"></div>
       </div>
     </div>
     <div class="row">
       <div class="container">
          <div class="col-md-8"></div>
          <div class="col-md-4">
-           <div class="page-header">
-             <center><h3 class="colors">Login Now <small>Smart Parking</small></h3></center>
-           </div>
+
 
            <div id="bg"></div>
 
            <form action="">
-
+                   <div class="page-header">
+                     <center><h3 class="colors">Login to <small class="colors">Smart Parking</small></h3></center>
+                   </div>
              <label for=""></label>
              <input type="text" name="" id="" placeholder="email" class="email">
 
@@ -112,14 +144,14 @@ form button[type=submit] {
 
              <button type="submit">login to your account</button>
 
-             <a href="#" class="btn btn-link">Sign Up to Smaert Parking Portal</a>
+             <a href="#" class="btn link">Sign Up to Smart Parking Portal</a>
 
            </form>
 
          </div>
     </div>
   </div>
-
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="assets/js/jquery-1.8.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
