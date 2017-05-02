@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Smart Parking Web Portal</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+
 <style>
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
 
@@ -110,6 +116,62 @@ form button[type=submit] {
 }
 
 </style>
+<script type="text/javascript">
+function checkPass()
+{
+
+
+    //Store the password field objects into variables ...
+    var pass1 = document.getElementById('password');
+    var pass2 = document.getElementById('password_confirm');
+    //Store the Confimation Message Object ...
+    var message = document.getElementById('confirmMessage');
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    //Compare the values in the password field
+    //and the confirmation field
+    if(pass1.value == pass2.value){
+        //The passwords match.
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password
+        pass2.style.backgroundColor = goodColor;
+
+        $('#regBtn').prop('disabled', false);
+        $('#regOwner').prop('disabled', false);
+    }else{
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+        $('#regBtn').prop('disabled', true);
+        $('#regOwner').prop('disabled', true);
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+    }
+}
+
+// validate email
+function email_validate(email)
+{
+var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
+   var status = document.getElementById("emailstatus");
+    if(regMail.test(email) == false)
+    {
+    document.getElementById("emailstatus").innerHTML    = "<span class='warning'>Email address is not valid yet.</span>";
+        status.style.color = "#f44336";
+        $('#regBtn').prop('disabled', true);
+        $('#regOwner').prop('disabled', true);
+    }
+    else
+    {
+    document.getElementById("emailstatus").innerHTML  = "<span class='valid'>Thanks, you have entered a valid Email address!</span>";
+        status.style.color = "#a5d6a7";
+        $('#regBtn').prop('disabled', false);
+        $('#regOwner').prop('disabled', false);
+    }
+}
+</script>
   </head>
   <body>
     <div class="overlay">
@@ -124,6 +186,42 @@ form button[type=submit] {
          <div class="col-md-4"></div>
       </div>
     </div>
+    <!-- Modal -->
+  <div class="modal fade" id="myModal"  role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">All form fields are required.</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" id="regForm">
+    <fieldset>
+      <label for="name">Username:</label>
+      <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="" class="text ui-widget-content ui-corner-all"  onchange="email_validate(this.value);" required>
+                  <p id="emailstatus"></p>
+      <label for="password">Password</label>
+     <input type="password" id="password" name="password" placeholder="" class="text ui-widget-content ui-corner-all" required>
+      <label for="password">Confirm Password</label>
+      <input type="password" class="text ui-widget-content ui-corner-all" id="password_confirm" name="password_confirm" placeholder=""  onkeyup="checkPass(); return false;" required>
+
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="regBtn" class="btn btn-success">create account</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
     <div class="row">
       <div class="container">
          <div class="col-md-8"></div>
@@ -145,6 +243,8 @@ form button[type=submit] {
              <button type="submit">login to your account</button>
 
              <a href="#" class="btn link">Sign Up to Smart Parking Portal</a>
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">Sign Up to Smart Parking Portal</button>
+
 
            </form>
 
@@ -152,6 +252,7 @@ form button[type=submit] {
     </div>
   </div>
 </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="assets/js/jquery-1.8.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

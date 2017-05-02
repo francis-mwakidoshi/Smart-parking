@@ -1,3 +1,3 @@
 <?php
-$con=mysqli_connect("localhost","root","pass123","smart_users") OR die();
+$con=mysqli_connect("localhost","root","king","smart_users") OR die();
  ?>
