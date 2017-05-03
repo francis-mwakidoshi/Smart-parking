@@ -242,8 +242,7 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
 
              <button type="submit">login to your account</button>
 
-             <a href="#" class="btn link">Sign Up to Smart Parking Portal</a>
-              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">Sign Up to Smart Parking Portal</button>
+              <a class="btn link" data-toggle="modal" data-target="#myModal">Sign Up to Smart Parking Portal</a>
 
 
            </form>
