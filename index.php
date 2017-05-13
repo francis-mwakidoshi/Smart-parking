@@ -1,3 +1,7 @@
+<?php
+session_start();
+require 'mysqlConnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -230,17 +234,17 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
 
            <div id="bg"></div>
 
-           <form action="">
+           <form action="index.php" method="POST">
                    <div class="page-header">
                      <center><h3 class="colors">Login to <small class="colors">Smart Parking</small></h3></center>
                    </div>
              <label for=""></label>
-             <input type="text" name="" id="" placeholder="email" class="email">
+             <input type="text" name="email" id="" placeholder="email" class="email">
 
              <label for=""></label>
-             <input type="password" name="" id="" placeholder="password" class="pass">
+             <input type="password" name="password" id="" placeholder="password" class="pass">
 
-             <button type="submit">login to your account</button>
+             <button type="submit" name="login">login to your account</button>
 
               <a class="btn link" data-toggle="modal" data-target="#myModal">Sign Up to Smart Parking Portal</a>
 
@@ -251,6 +255,25 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
     </div>
   </div>
 </div>
+<?php
+if(isset($_POST['login'])){
+$password=mysqli_real_escape_string($con,$_POST['password']);
+$email=mysqli_real_escape_string($con,$_POST['email']);
+
+$sel="select * from users where email='$email' AND password='$password'";
+$run=mysqli_query($con,$sel);
+$check=mysqli_num_rows($run);
+if($check==0)
+{
+echo"<script>alert('password or email is not correct,try again!')</script>";
+exit();
+}
+else{
+$_SESSION['email']=$email;
+echo"<script>window.open('home.php','_self')</script>";
+}
+}
+?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="assets/js/jquery-1.8.3.min.js"></script>
