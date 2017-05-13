@@ -53,8 +53,10 @@ else {
 <nav class="row bg">
 <div class="top">
   <div class="col-md-4"><h1>Smart Parking </h1></div>
-  <div class="col-md-4"></div>
   <div class="col-md-4"><br><h4><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['email']; ?></h4></div>
+  <div class="col-md-4"><a class="logout"  href="logout.php"><h1>Logout</h1></a></div>
+
+
   </div>
 </nav>
 
