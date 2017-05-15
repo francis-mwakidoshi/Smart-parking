@@ -15,9 +15,7 @@ else {
     <title>Smart Parking Web Portal</title>
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style>
         body {
@@ -53,8 +51,24 @@ else {
 <nav class="row bg">
 <div class="top">
   <div class="col-md-4"><h1>Smart Parking </h1></div>
-  <div class="col-md-4"><br><h4><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['email']; ?></h4></div>
-  <div class="col-md-4"><a class="logout"  href="logout.php"><h1>Logout</h1></a></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="dropdown">
+      <br><h4 class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['email']; ?>
+        <span class="caret"></span>
+      </h4 >
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li class="dropdown-header">User Action!!</li>
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="logout.php">Logout</a></li>
+      </ul>
+    </div>
+
+  </div>
 
 
   </div>
@@ -93,7 +107,7 @@ else {
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap.min.js"></script>
   </body>
