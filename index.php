@@ -201,7 +201,7 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
           <h4 class="modal-title">All form fields are required.</h4>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal" id="regForm">
+          <form class="form-horizontal" id="regForm" action="register.php" method="POST" enctype="multipart/form-data">
     <fieldset>
       <label for="name">Username:</label>
       <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
@@ -216,12 +216,13 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>
-  </form>
+
         </div>
         <div class="modal-footer">
-          <button type="button" id="regBtn" class="btn btn-success">create account</button>
+          <button type="submit" id="regBtn" class="btn btn-success" name="register">create account</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
+        </form>
       </div>
 
     </div>
@@ -255,6 +256,7 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
     </div>
   </div>
 </div>
+
 <?php
 if(isset($_POST['login'])){
 $password=mysqli_real_escape_string($con,$_POST['password']);
