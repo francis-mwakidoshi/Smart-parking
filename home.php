@@ -35,16 +35,22 @@ else {
           border-bottom: 1px solid #eeff41;
         }
 
-        .searchbox {
+        .box {
            background: rgba(130,130,130,.7);
           padding: 4% 10px 8%;
-          color:#bbdefb !important;
+          color:#bbdefb ;
+          border-radius: 20px;
         }
 
 .area{
   margin-bottom: 15px;
 }
 
+.cart-nav ul li {
+  margin:3%;
+  padding: 3%;
+  color: #0000 !important;
+}
     </style>
 </head>
 <body>
@@ -58,14 +64,14 @@ else {
         <span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['email']; ?>
         <span class="caret"></span>
       </h4 >
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li class="dropdown-header">User Action!!</li>
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="logout.php">Logout</a></li>
-      </ul>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li class="dropdown-header">User Action!!</li>
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="logout.php">Logout</a></li>
+            </ul>
     </div>
 
   </div>
@@ -76,31 +82,42 @@ else {
 
 <div class="row">
    <div class="container">
+     <div class="box row">
+         <div class="cart-nav col-xs-4">
+           <ul>
+             <li class="list-group-item">
+               <select class="form-control">
+                 <option>----[Search Cartegory 1]----</option>
+                 <option>2</option>
+                 <option>3</option>
+                 <option>4</option>
+                 <option>5</option>
+               </select>
+             </li>
 
-   <div class="col-md-6 searchbox">
-          <div class="page-header">
-            <h1>Find A Parking Spot<br></h1>
-            <small>Search for a parking spot near you</small>
-          </div>
-      <form >
+             <li class="list-group-item">
+               <select class="form-control">
+                 <option>----[Search Cartegory 2]----</option>
+                 <option>2</option>
+                 <option>3</option>
+                 <option>4</option>
+                 <option>5</option>
+               </select>
+             </li>
 
-    <div class="input-group area">
-      <input type="text" class="form-control" placeholder="Find by Address, Neighborhood or Destination">
-      <span class="input-group-btn">
-        <button class="btn btn-danger" type="button">SEARCH NOW!</button>
-      </span>
-    </div><!-- /input-group -->
+             <li class="list-group-item">Notifications</li>
+             <li class="list-group-item">Porta ac consectetur ac</li>
+             <li class="list-group-item">Vestibulum at eros</li>
+           </ul>
+         </div>
 
-        <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">DAILY PARKING
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> MONTHLY PARKING
-        </label>
-      </form>
-   </div>
+         <div class="content col-xs-8">
 
-   <div class="col-md-6">.col-md-4</div>
+<!--Parking spaces to display here-->
+<div class="well well-lg">...</div>
+
+         </div>
+     </div>
    </div>
 </div>
 
