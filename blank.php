@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+require 'mysqlConnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +27,12 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-
-  <body>
-
+<!-- Bootstrap Core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="jquery/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
   <section id="container" >
       <!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -40,15 +43,9 @@
             <!--logo start-->
             <a href="index.php" class="logo"><b>Smart-parking</b></a>
             <!--logo end-->
-            <div class="top-menu">
-              <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="logout.php">Logout</a></li>
-              </ul>
-            </div>
+
         </header>
       <!--header end-->
-
-      <!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
@@ -57,8 +54,14 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
+                  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
+                  <li class="mt">
+                      <a href="admin.php">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
 
                    <li class="sub-menu">
                       <a href="javascript:;" >
@@ -85,49 +88,65 @@
           	<h3><i class="fa fa-angle-right"></i> Blank Page</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
-          		<p>Place your content here.</p>
-          		</div>
-          	</div>
+          		<p>Upload Parkings</p>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Ajax image upload</h3>
+                </div>
+                <div class="panel-body">
+                  <span id="message"></span>
+                  <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+                  <div id="image_preview" ><img id="previewing" src="//placehold.it/600x350/992233" class="img-responsive"/></div>
+                  <hr id="line">
+                  <label>Select Your Image</label><br/>
+                  <div class="form-group">
+                  <input type="file" name="file" id="file" required />
+                  <textarea cols=4 rows=3 name="details"></textarea>
+                  </div>
+                  <div class="form-group" >
+                  <input type="submit" value="Upload" class="btn btn-lg btn-success btn-block" />
+                  </div>
+                  </form>
+                </div>
+             </div>
+            </div>
+        </div>
+      </div>
+    </div>
 
-		</section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
+</section>
+<!--/wrapper -->
+</section><!-- /MAIN CONTENT -->
 
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              &copy; <?php echo date("Y"); ?> Copyright.
-              <a href="blank.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+<!--main content end-->
+<!--footer start-->
+<footer class="site-footer">
+    <div class="text-center">
+        &copy; <?php echo date("Y"); ?> Copyright.
+        <a href="blank.html#" class="go-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+</footer>
+<!--footer end-->
+</section>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="script.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="assets/js/jquery.scrollTo.min.js"></script>
+<script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+<!--common script for all pages-->
+<script src="assets/js/common-scripts.js"></script>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
 
 
-    <!--common script for all pages-->
-    <script src="assets/js/common-scripts.js"></script>
+<!--script for this page-->
 
-    <!--script for this page-->
-
-  <script>
-      //custom select box
-
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
-
-  </body>
+</body>
 </html>
