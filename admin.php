@@ -71,10 +71,11 @@ else {
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
-                          <span>Parkings</span>
+                          <span>Parkings Details</span>
                       </a>
                       <ul class="sub">
                           <li><a  href="blank.php">Upload New Parkings</a></li>
+                          <li><a  href="attendant.php">Add new Parking Attendant</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
