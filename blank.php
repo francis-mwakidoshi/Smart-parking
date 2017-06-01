@@ -85,34 +85,36 @@ require 'mysqlConnect.php';
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+          	<h3><i class="fa fa-angle-right"></i> Upload Parkings Details</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
-          		<p>Upload Parkings</p>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Ajax image upload</h3>
-                </div>
-                <div class="panel-body">
-                  <span id="message"></span>
-                  <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
-                  <div id="image_preview" ><img id="previewing" src="//placehold.it/600x350/992233" class="img-responsive"/></div>
-                  <hr id="line">
-                  <label>Select Your Image</label><br/>
-                  <div class="form-group">
-                  <input type="file" name="file" id="file" required />
-                  <textarea cols=4 rows=3 name="details"></textarea>
-                  </div>
-                  <div class="form-group" >
-                  <input type="submit" value="Upload" class="btn btn-lg btn-success btn-block" />
-                  </div>
-                  </form>
-                </div>
-             </div>
-            </div>
+              <form class="form-horizontal" action="upload.php" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  placeholder="location" name="location">
+          </div>
         </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  placeholder="Street" name="street">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  placeholder="Parking name" name="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Number of slot" name="slot">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-6 col-sm-10">
+            <button type="submit" class="btn btn-default" name="sub">Submit</button>
+          </div>
+        </div>
+      </form>
       </div>
     </div>
 
