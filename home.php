@@ -1,4 +1,6 @@
-<?php session_start();
+<?php
+session_start();
+require 'mysqlConnect.php';
 if (!$_SESSION['email']) {
   header("location: index.php");
 }
@@ -51,6 +53,17 @@ else {
   padding: 3%;
   color: #0000 !important;
 }
+
+.Head {
+  text-transform: uppercase;
+   text-shadow: 2px 2px	#DEB887;
+   color: 	#556B2F !important;
+}
+
+.parking_text {
+  color: #2F4F4F !important;
+  text-transform: uppercase;
+}
     </style>
 </head>
 <body>
@@ -72,6 +85,7 @@ else {
               <li role="separator" class="divider"></li>
               <li><a href="logout.php">Logout</a></li>
             </ul>
+
     </div>
 
   </div>
@@ -114,7 +128,37 @@ else {
          <div class="content col-xs-8">
 
 <!--Parking spaces to display here-->
-<div class="well well-lg">...</div>
+<?php
+$query_parkings = "SELECT * FROM `parkings`";
+$parkings_result = mysqli_query($con, $query_parkings);
+
+while ($parking = mysqli_fetch_array($parkings_result)) {
+  $parking_id = $parking['id'];
+  $parking_location = $parking['location'];
+  $parking_street = $parking['street'];
+  $parking_name = $parking['name'];
+  $parking_slot = $parking['slot'];
+?>
+<div class="panel panel-default parking_text">
+  <div class="panel-body">
+    <h4 class="Head"><?=$parking_name; ?></h4>
+    <hr>
+    <ul class="list-group">
+      <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_location; ?></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_street; ?></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?></li>
+    </ul>
+    <button class="btn btn-default" type="submit">select Now!!</button>
+
+  </div>
+</div>
+<?php
+
+
+}
+
+ ?>
 
          </div>
      </div>
