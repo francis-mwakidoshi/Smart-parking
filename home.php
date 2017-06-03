@@ -17,7 +17,7 @@ else {
     <title>Smart Parking Web Portal</title>
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style>
         body {
@@ -172,16 +172,16 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
           <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?> total slots </li>
           <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_slot; ?> Remaining Slots</li>
           <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span> Ksh. <?=$parking_price; ?> Per Slot Per Hour</li>
-          <li class="list-group-item total"> Ksh. <?=$parking_slot; ?> Total cost</li>
+          <li class="list-group-item total"  ><div id="total<?=$parking_id; ?>"> Ksh.<?=$parking_slot; ?> Total cost</div></li>
           <li class="list-group-item">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Number of slots" aria-describedby="basic-addon2">
+              <input type="text" class="form-control" id="slot<?=$parking_id ; ?>" placeholder="Number of slots" aria-describedby="basic-addon2">
               <span class="input-group-addon" id="basic-addon2">Slots</span>
             </div>
           </li>
           <li class="list-group-item">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Number of Hours" aria-describedby="basic-addon2">
+              <input type="text" class="form-control"  id="hour<?=$parking_id; ?>" placeholder="Number of Hours" aria-describedby="basic-addon2">
               <span class="input-group-addon" id="basic-addon2">Hours</span>
             </div>
           </li>
@@ -196,6 +196,43 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
     </div>
   </div>
 </div>
+<script src="assets/js/jquery.js"></script>
+<script>
+$(function(){
+  $('#hour<?=$parking_id; ?>').keyup(function(){
+        var slot = $('#slot<?=$parking_id; ?>').val();
+        var hours = $('#hour<?=$parking_id; ?>').val();
+        var total='';
+        var cost = "<?=$parking_price; ?>";
+
+        if (slot=='' || hours=='') {
+             $("#total<?=$parking_id; ?>").html("FILL NUMBER OF SLOTS VALUES");
+        }else{
+            total = cost * hours * slot;
+            $("#total<?=$parking_id; ?>").html("KSH. "+total+" TOTAL COST");
+        }
+  });
+
+
+
+  $('#slot<?=$parking_id; ?>').keyup(function(){
+        var slot = $('#slot<?=$parking_id; ?>').val();
+        var hours = $('#hour<?=$parking_id; ?>').val();
+        var total='';
+        var cost = "<?=$parking_price; ?>";
+
+        if (slot=='' || hours=='') {
+             $("#total<?=$parking_id; ?>").html("FILL HOURS VALUES");
+        }else{
+            total = cost * hours * slot;
+            $("#total<?=$parking_id; ?>").html("KSH. "+total+" TOTAL COST");
+        }
+  });
+
+});
+
+
+</script>
 <?php
 
 
@@ -211,7 +248,7 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="assets/js/jquery.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap.min.js"></script>
   </body>
