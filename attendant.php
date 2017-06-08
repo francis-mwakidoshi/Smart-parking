@@ -127,7 +127,7 @@ if(isset($_POST['sub'])){
 	}
   else{
 
-		$insert="INSERT INTO `attendant` (`id`, `Fname`, `Lname`, `mobile_no`, `location`) VALUES (NULL, '$Fname', '$Lname', '$mobile_no', '$location');";
+		$insert="INSERT INTO `attendant` (`id_attendant`, `Fname`, `Lname`, `mobile_no`, `location`) VALUES (NULL, '$Fname', '$Lname', '$mobile_no', '$location');";
 		$run_insert=mysqli_query($con,$insert);
 		if($run_insert){
 			echo"<script>alert('registration successful')</script>";
