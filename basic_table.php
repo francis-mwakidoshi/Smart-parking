@@ -1,4 +1,5 @@
 <?php session_start();
+require 'mysqlConnect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,23 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+    <style>
+table{
+
+ padding:2px;
+ width:1000px;
+
+}
+th{
+  border:2px solid black !important;
+}
+input{
+  padding:5px;
+}
+a:link{text-decoration:none;}
+</style>
   </head>
 
   <body>
@@ -40,7 +57,7 @@
             <!--logo start-->
             <a href="index.php" class="logo"><b>Smart-parking</b></a>
             <!--logo end-->
-            
+
         </header>
       <!--header end-->
 
@@ -74,80 +91,117 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Basic Table Examples</h3>
 				<div class="row">
 
 	                  <div class="col-md-12">
 	                  	  <div class="content-panel">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Basic Table</h4>
+
 	                  	  	  <hr>
-		                      <table class="table">
-		                          <thead>
-		                          <tr>
-		                              <th>#</th>
-		                              <th>First Name</th>
-		                              <th>Last Name</th>
-		                              <th>Username</th>
-		                          </tr>
-		                          </thead>
-		                          <tbody>
-		                          <tr>
-		                              <td>1</td>
-		                              <td>Mark</td>
-		                              <td>Otto</td>
-		                              <td>@mdo</td>
-		                          </tr>
-		                          <tr>
-		                              <td>2</td>
-		                              <td>Jacob</td>
-		                              <td>Thornton</td>
-		                              <td>@fat</td>
-		                          </tr>
-		                          <tr>
-		                              <td>3</td>
-		                              <td>Larry</td>
-		                              <td>the Bird</td>
-		                              <td>@twitter</td>
-		                          </tr>
-		                          </tbody>
-		                      </table>
+              <table class="table table-hover">
+                      <tr align="center"><td colspan="6"><h2>View All Parkings</h2></tr>
+                      <tr align="center">
+                      <th>S.N </th>
+                      <th>Location </th>
+                      <th>Street </th>
+                      <th>Name</th>
+                      <th>Slot</th>
+                      <th>Price</th>
+                      <th>Delete </th>
+                      <th>Edit </th>
+                      </tr>
+<?php
+$sel="select * from parkings";
+$run=mysqli_query($con,$sel);
+$i=0;
+while($row=mysqli_fetch_array($run)){
+$id=$row['id'];
+$location=$row['location'];
+$street=$row['street'];
+$name=$row['name'];
+$slot=$row['slot'];
+$price=$row['price'];
+$i++;
+
+?>
+<tr align="center">
+<td><?php echo $i; ?></td>
+<td><?php echo $location; ?></td>
+<td><?php echo $street; ?></td>
+<td><?php echo $name; ?></td>
+<td><?php echo $slot; ?></td>
+<td><?php echo $price; ?></td>
+<td><a href="edit.php? edit=<?php echo $id; ?>">Edit</a</td>
+<td><a href="basic_table.php?delete=<?php echo $id; ?>">Delete</a></td>
+</tr>
+<?php }?>
+</table>
+<?php
+if(isset($_GET['delete']))
+{
+  $delete_id=$_GET['delete'];
+  $delete="DELETE FROM `parkings` WHERE `parkings`.`id` ='$delete_id'";
+  $run_delete=mysqli_query($con,$delete);
+  if($run_delete)
+  {
+    echo "<script>alert('Parking deleted successfully')</script>";
+    echo "<script>window.open('basic_table.php','_self')</script>";
+  }
+}
+?>
 	                  	  </div><! --/content-panel -->
 	                  </div><!-- /col-md-12 -->
 
 	                  <div class="col-md-12 mt">
 	                  	<div class="content-panel">
 	                          <table class="table table-hover">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Hover Table</h4>
-	                  	  	  <hr>
-	                              <thead>
-	                              <tr>
-	                                  <th>#</th>
-	                                  <th>First Name</th>
-	                                  <th>Last Name</th>
-	                                  <th>Username</th>
-	                              </tr>
-	                              </thead>
-	                              <tbody>
-	                              <tr>
-	                                  <td>1</td>
-	                                  <td>Mark</td>
-	                                  <td>Otto</td>
-	                                  <td>@mdo</td>
-	                              </tr>
-	                              <tr>
-	                                  <td>2</td>
-	                                  <td>Jacob</td>
-	                                  <td>Thornton</td>
-	                                  <td>@fat</td>
-	                              </tr>
-	                              <tr>
-	                                  <td>3</td>
-	                                  <td>Simon</td>
-	                                  <td>Mosa</td>
-	                                  <td>@twitter</td>
-	                              </tr>
-	                              </tbody>
-	                          </table>
+
+                                      <tr><td colspan="6"><h2>View All Parking Attendants </h2></tr>
+                                      <tr align="center">
+                                      <th>S.N </th>
+                                      <th>Fname </th>
+                                      <th>Lname </th>
+                                      <th>mobile_no</th>
+                                      <th>location</th>
+                                      <th>Delete </th>
+                                      <th>Edit </th>
+                                      </tr>
+                <?php
+                $sel="select * from attendant";
+                $run=mysqli_query($con,$sel);
+                $i=0;
+                while($row=mysqli_fetch_array($run)){
+                $id=$row['id'];
+                $Fname=$row['Fname'];
+                $Lname=$row['Lname'];
+                $mobile_no=$row['mobile_no'];
+                $location=$row['location'];
+                $i++;
+
+                ?>
+                <tr align="center">
+                <td><?php echo $i; ?></td>
+                <td><?php echo $Fname; ?></td>
+                <td><?php echo $Lname; ?></td>
+                <td><?php echo $mobile_no; ?></td>
+                <td><?php echo $location; ?></td>
+                <td><a href="edit.php? edit=<?php echo $id; ?>">Edit</a</td>
+                <td><a href="basic_table.php?delete=<?php echo $id; ?>">Delete</a></td>
+                </tr>
+                <?php }?>
+                </table>
+                <?php
+                if(isset($_GET['delete']))
+                {
+                  $delete_id=$_GET['delete'];
+                  $delete="DELETE FROM `attendant` WHERE `attendant`.`id` ='$delete_id'";
+                  $run_delete=mysqli_query($con,$delete);
+                  if($run_delete)
+                  {
+                    echo "<script>alert('Attendant deleted successfully')</script>";
+                    echo "<script>window.open('basic_table.php','_self')</script>";
+                  }
+                }
+                ?>
 	                  	  </div><! --/content-panel -->
 	                  </div><!-- /col-md-12 -->
 				</div><!-- row -->

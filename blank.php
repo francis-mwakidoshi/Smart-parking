@@ -63,16 +63,6 @@ require 'mysqlConnect.php';
                       </a>
                   </li>
 
-                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Some sample parkings</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="gallery.php">View Parkings</a></li>
-                      </ul>
-                  </li>
-
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -107,6 +97,11 @@ require 'mysqlConnect.php';
         <div class="form-group">
           <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="Number of slot" name="slot">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Amount" name="price">
           </div>
         </div>
         <div class="form-group">

@@ -62,17 +62,6 @@ require 'mysqlConnect.php';
                           <span>Dashboard</span>
                       </a>
                   </li>
-
-                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Some sample parkings</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="gallery.php">View Parkings</a></li>
-                      </ul>
-                  </li>
-
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -85,10 +74,10 @@ require 'mysqlConnect.php';
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Upload Attendant Details</h3>
+          	<h3><i class="fa fa-angle-right"></i> Add Parking Attendant Details</h3>
           	<div class="row mt">
           		<div class="col-lg-12">
-              <form class="form-horizontal" action="upload.php" method="POST" enctype="multipart/form-data">
+              <form class="form-horizontal" action="attendant.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <div class="col-sm-10">
             <input type="text" class="form-control"  placeholder="first name" name="Fname">
@@ -124,6 +113,31 @@ require 'mysqlConnect.php';
 
 <!--main content end-->
 <!--footer start-->
+<?php
+if(isset($_POST['sub'])){
+  $Fname=mysqli_real_escape_string($con,$_POST['Fname']);
+	$Lname=mysqli_real_escape_string($con,$_POST['Lname']);
+	$mobile_no=mysqli_real_escape_string($con,$_POST['mobile_no']);
+  $location=mysqli_real_escape_string($con,$_POST['location']);
+
+  if($Fname==''&& $Lname==''&& $mobile_no=='' && $location==''){
+		echo"<script>alert('please fill all field')</script>";
+      echo"<script>window.open('attendant.php','_self')</script>";
+		exit();
+	}
+  else{
+
+		$insert="INSERT INTO `attendant` (`id`, `Fname`, `Lname`, `mobile_no`, `location`) VALUES (NULL, '$Fname', '$Lname', '$mobile_no', '$location');";
+		$run_insert=mysqli_query($con,$insert);
+		if($run_insert){
+			echo"<script>alert('registration successful')</script>";
+      echo"<script>window.open('attendant.php','_self')</script>";
+
+
+		}
+}}
+?>
+
 <footer class="site-footer">
     <div class="text-center">
         &copy; <?php echo date("Y"); ?> Copyright.
