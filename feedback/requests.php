@@ -1,3 +1,4 @@
+
 <div>
 
   <!-- Nav tabs -->
@@ -55,4 +56,5 @@ $("#new").load("feedback/req.php");
           $("#past").html(data);
       });
   })   
+
 </script>

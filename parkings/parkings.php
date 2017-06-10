@@ -168,7 +168,9 @@ $("#select<?=$parking_id; ?>").click(function(){
 
 
 
+
 $query_parkings = "SELECT * FROM `parkings` WHERE `remaining_slots` > '0'";
+
 $parkings_result = mysqli_query($con, $query_parkings);
 
 while ($parking = mysqli_fetch_array($parkings_result)) {
@@ -177,7 +179,9 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
   $parking_street = $parking['street'];
   $parking_name = $parking['name'];
   $parking_slot = $parking['slot'];
+
   $parking_remaining = $parking['remaining_slots'];
+
   $parking_price = $parking['price'];
 ?>
 <div class="panel panel-default parking_text">
@@ -186,6 +190,7 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
     <hr>
     <ul class="list-group">
       <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
+
     </ul>
     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
 
@@ -203,7 +208,9 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
         <ul class="list-group">
           <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
           <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?> total slots </li>
+
           <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_remaining; ?> Remaining Slots</li>
+
           <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span> Ksh. <?=$parking_price; ?> Per Slot Per Hour</li>
           <li class="list-group-item " ><span class="glyphicon">Ksh. </span> <p class="total" id="total<?=$parking_id; ?>"><?=$parking_slot; ?> </p></li>
           <li class="list-group-item">
@@ -231,7 +238,9 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
                                <span><i class="fa fa-cc-stripe" aria-hidden="true"></i></span>                            
                             </h2>        
         <div id="slot_status<?=$parking_id; ?>"></div>
+
         <div id="status1<?=$parking_id; ?>"></div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -280,6 +289,7 @@ $("#select<?=$parking_id; ?>").click(function(){
         var hours = $('#hour<?=$parking_id; ?>').val();
         var total='';
         var cost = "<?=$parking_price; ?>";
+
         var remaining = "<?=$parking_remaining; ?>";
 
         if(Number(slot) < Number(remaining) ){
@@ -298,8 +308,6 @@ $("#select<?=$parking_id; ?>").click(function(){
                 $("#total<?=$parking_id; ?>").html(total);
             }
         
-
-
 
   });
 
