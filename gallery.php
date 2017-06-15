@@ -1,4 +1,5 @@
 <?php session_start();
+require 'update_slots.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

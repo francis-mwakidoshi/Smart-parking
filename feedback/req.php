@@ -1,6 +1,7 @@
 
 <?php
 session_start();
+@require '../update_slots.php';
 require '../mysqlConnect.php';
 ?>
 
@@ -10,9 +11,10 @@ require '../mysqlConnect.php';
 }
 </style>
 <div class="panel panel-success custom">
-<div class="panel-body">
+<div class="panel-body ">
 
-<table class="table teble-hover">
+</div class="table-responsive ">
+<table class="table  table-bordered table-striped table-hover " id="example">
 <thaed>
   <th>#</th>
   <th>Parking</th>
@@ -88,7 +90,7 @@ while ($request = mysqli_fetch_array($res)) {
     $stat = $request['status'];
     $location = $request['location'];
     $street = $request['street'];
-
+$url = "";
 ?>
 <tr>
   <td>#</td>
@@ -100,7 +102,7 @@ while ($request = mysqli_fetch_array($res)) {
   <td>Ksh. <?=$cost; ?></td>
   <td><?=$time; ?></td>
   <td><?=$stat; ?></td>
-  <td>Mod</td>
+  <td><a href="print.php?" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-save-file"></span> Print</a></td>
 </tr>
 
 <?php    
@@ -111,7 +113,23 @@ while ($request = mysqli_fetch_array($res)) {
 
 
 ?>
+<script>
+$(function () {
+    $('.table').DataTable();
+} );
+
+  function loadData(){
+    $(".table").Datatable();
+  }
+
+  document.onready = function(){
+    loadData();
+  }
+
+  
+</script>
 </tbody>
 </table>
+</div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 <?php session_start();
+require 'update_slots.php';
 if (!$_SESSION['email']) {
   header("location: admin_login.php");
 }

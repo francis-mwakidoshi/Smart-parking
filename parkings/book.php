@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../mysqlConnect.php';
+require '../update_slots.php';
 
 if($_POST){
 

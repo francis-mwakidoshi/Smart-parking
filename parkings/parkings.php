@@ -1,6 +1,7 @@
 <!--Parking spaces to display here-->
 <?php
 session_start();
+require '../update_slots.php';
 require '../mysqlConnect.php';
 
 if($_POST){
