@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'update_slots.php';
 require 'mysqlConnect.php';
 ?>
 <!DOCTYPE html>

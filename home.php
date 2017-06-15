@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'mysqlConnect.php';
+require 'update_slots.php';
 if (!$_SESSION['email']) {
   header("location: index.php");
 }
@@ -17,8 +18,10 @@ else {
     <title>Smart Parking Web Portal</title>
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="datatable/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="datatable/keyTable.bootstrap.min.css" rel="stylesheet">
     <style>
         body {
           font-family: "Open Sans Condensed", sans-serif;
@@ -131,7 +134,7 @@ else {
              </li>
 
              <li class="list-group-item" id="requests"><a><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
-             <li class="list-group-item">Porta ac consectetur ac</li>
+             <a id="receipt"><li class="list-group-item">Receipt Printing</li></a>
              <li class="list-group-item">Vestibulum at eros</li>
            </ul>
          </div>
@@ -153,6 +156,8 @@ else {
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="datatable/dataTables.bootstrap.min.js"></script>
+    <script src="datatable/dataTables.keyTable.min.js"></script>
     <script>
 $("#home").load("parkings/parkings.php");
 
@@ -167,7 +172,12 @@ $("#home").load("parkings/parkings.php");
 
   $("#requests").click(function(){
     $("#home").load("feedback/requests.php");  
-  })
+  });
+
+  $("#receipt").click(function(){
+    $("#home").load("receipt/new.php");  
+  });
+
     </script>
   </body>
 </html>

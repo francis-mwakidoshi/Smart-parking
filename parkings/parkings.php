@@ -1,6 +1,7 @@
 <!--Parking spaces to display here-->
 <?php
 session_start();
+require '../update_slots.php';
 require '../mysqlConnect.php';
 
 if($_POST){
@@ -168,7 +169,9 @@ $("#select<?=$parking_id; ?>").click(function(){
 
 
 
-$query_parkings = "SELECT * FROM `parkings`";
+
+$query_parkings = "SELECT * FROM `parkings` WHERE `remaining_slots` > '0'";
+
 $parkings_result = mysqli_query($con, $query_parkings);
 
 while ($parking = mysqli_fetch_array($parkings_result)) {
@@ -177,6 +180,9 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
   $parking_street = $parking['street'];
   $parking_name = $parking['name'];
   $parking_slot = $parking['slot'];
+
+  $parking_remaining = $parking['remaining_slots'];
+
   $parking_price = $parking['price'];
 ?>
 <div class="panel panel-default parking_text">
@@ -185,9 +191,7 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
     <hr>
     <ul class="list-group">
       <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
-      <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_location; ?></li>
-      <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_street; ?></li>
-      <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?></li>
+
     </ul>
     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
 
@@ -205,7 +209,9 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
         <ul class="list-group">
           <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
           <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?> total slots </li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_slot; ?> Remaining Slots</li>
+
+          <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_remaining; ?> Remaining Slots</li>
+
           <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span> Ksh. <?=$parking_price; ?> Per Slot Per Hour</li>
           <li class="list-group-item " ><span class="glyphicon">Ksh. </span> <p class="total" id="total<?=$parking_id; ?>"><?=$parking_slot; ?> </p></li>
           <li class="list-group-item">
@@ -233,6 +239,9 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
                                <span><i class="fa fa-cc-stripe" aria-hidden="true"></i></span>                            
                             </h2>        
         <div id="slot_status<?=$parking_id; ?>"></div>
+
+        <div id="status1<?=$parking_id; ?>"></div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -282,12 +291,25 @@ $("#select<?=$parking_id; ?>").click(function(){
         var total='';
         var cost = "<?=$parking_price; ?>";
 
-        if (slot=='' || hours=='') {
-             $("#total<?=$parking_id; ?>").html("FILL HOURS VALUES");
+        var remaining = "<?=$parking_remaining; ?>";
+
+        if(Number(slot) < Number(remaining) ){
+           $("#status1<?=$parking_id; ?>").html("");
+           
+            $("#select<?=$parking_id;?>").prop('disabled', false).attr('class', 'btn btn-primary').html('Select this space');
         }else{
-            total = cost * hours * slot;
-            $("#total<?=$parking_id; ?>").html(total);
+           $("#status1<?=$parking_id; ?>").html("You chose Slots that exceeds the Remaining slots").css("color", "red");
+           $("#select<?=$parking_id;?>").prop('disabled', true).attr('class', 'btn btn-danger').html('Disabled...');
         }
+
+            if (slot=='' || hours=='') {
+                $("#total<?=$parking_id; ?>").html("FILL HOURS VALUES");
+            }else{
+                total = cost * hours * slot;
+                $("#total<?=$parking_id; ?>").html(total);
+            }
+        
+
   });
 
 

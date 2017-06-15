@@ -1,5 +1,6 @@
 <!--Parking spaces to display here-->
 <?php
+require '../update_slots.php';
 $query_parkings = "SELECT * FROM `parkings`";
 $parkings_result = mysqli_query($con, $query_parkings);
 
