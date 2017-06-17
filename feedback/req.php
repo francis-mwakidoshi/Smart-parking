@@ -90,7 +90,7 @@ while ($request = mysqli_fetch_array($res)) {
     $stat = $request['status'];
     $location = $request['location'];
     $street = $request['street'];
-$url = "print.php?request_id=".urlencode($id);
+$url = "print1.php?request_id=".urlencode($id);
 ?>
 <tr>
   <td>#</td>
