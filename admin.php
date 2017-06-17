@@ -52,7 +52,7 @@ else {
             <!--logo end-->
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="logout.php">Logout</a></li>
+                    <li><a class="logout" href="logout.php" style="background-color:#ffd777;">Logout</a></li>
             	</ul>
             </div>
         </header>
@@ -77,17 +77,11 @@ else {
                       <ul class="sub">
                           <li><a  href="blank.php">Upload New Parkings</a></li>
                           <li><a  href="attendant.php">Add new Parking Attendant</a></li>
+                          <li><a  href="basic_table.php">Parkings</a></li>
+                            <li><a  href="basic_table.php">Attendants</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="basic_table.php">Basic Table</a></li>
-                      </ul>
-                  </li>
+                  
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -119,7 +113,7 @@ else {
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
 
-              
+
                       </div>
 
                   </div><!-- /col-lg-3 -->

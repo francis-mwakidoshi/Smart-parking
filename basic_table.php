@@ -211,15 +211,7 @@ if(isset($_GET['delete']))
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              &copy; <?php echo date("Y"); ?> Copyright.
-              <a href="basic_table.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
+    
       <!--footer end-->
   </section>
 

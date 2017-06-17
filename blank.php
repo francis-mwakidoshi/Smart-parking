@@ -101,6 +101,11 @@ require 'mysqlConnect.php';
         </div>
         <div class="form-group">
           <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Number of remaining slot" name="remaining_slots">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="Amount" name="price">
           </div>
         </div>

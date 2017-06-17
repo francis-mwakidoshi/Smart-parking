@@ -7,9 +7,11 @@ if(isset($_POST['sub'])){
 	$street = mysqli_real_escape_string($con,$_POST['street']);
 	$name=mysqli_real_escape_string($con,$_POST['name']);
 	$slot=mysqli_real_escape_string($con,$_POST['slot']);
+	$remaining_slots=mysqli_real_escape_string($con,$_POST['remaining_slots']);
 	$price=mysqli_real_escape_string($con,$_POST['price']);
 
-	   if($location==''&& $street==''&& $name=='' && $slot=='' && $price==''){
+
+	   if($location==''&& $street==''&& $name=='' && $slot=='' && $price=='' && $remaining_slots==''){
 		echo"<script>alert('please fill all field')</script>";
 		echo"<script>window.open('blank.php','_self')</script>";
 		exit();
@@ -17,7 +19,7 @@ if(isset($_POST['sub'])){
 
 	else{
 
-		$insert="INSERT INTO `parkings` (`id`, `location`, `street`, `name`, `slot` , `price`) VALUES (NULL, '$location', '$street', '$name', '$slot' , '$price');";
+		$insert="INSERT INTO `parkings` (`id`, `location`, `street`, `name`, `slot` , `price`,`remaining_slots`) VALUES (NULL, '$location', '$street', '$name', '$slot' , '$price','$remaining_slots');";
 		$run_insert=mysqli_query($con,$insert);
 		if($run_insert){
 			echo"<script>alert('Successful added!')</script>";
