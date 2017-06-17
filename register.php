@@ -11,11 +11,7 @@ if(isset($_POST['register'])){
 
 	if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
 		echo"<script>alert('your email is not valid!')</script>";
-		exit();
-	}
-
-	if(strlen($password)<8){
-		echo"<script>alert('please select a password of 8 letters minimum')</script>";
+      echo"<script>window.open('index.php','_self')</script>";
 		exit();
 	}
 
@@ -25,6 +21,7 @@ if(isset($_POST['register'])){
 
 	if($check_email==1){
 		echo"<script>alert('This email is already registered,try another one!')</script>";
+      echo"<script>window.open('index.php','_self')</script>";
 		exit();
 	}
 	else{

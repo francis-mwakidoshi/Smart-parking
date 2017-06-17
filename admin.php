@@ -69,20 +69,15 @@ else {
 
               	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
               	  <h5 class="centered"> <?php echo $_SESSION['email']; ?> </h5>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Parkings Details</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="blank.php">Upload New Parkings</a></li>
-                          <li><a  href="attendant.php">Add new Parking Attendant</a></li>
-                          <li><a  href="basic_table.php">Parkings</a></li>
-                            <li><a  href="basic_table.php">Attendants</a></li>
-                      </ul>
-                  </li>
-                  
-              </ul>
+                     </ul>
+                  <ul>
+                      <li><a  href="blank.php">Upload New Parkings</a></li>
+                      <li><a  href="attendant.php">Add new Parking Attendant</a></li>
+                      <li><a  href="basic_table.php">Parkings</a></li>
+                        <li><a  href="basic_table.php">Attendants</a></li>
+                          <li><a  href="request.php">Requests</a></li>
+                  </ul>
+
               <!-- sidebar menu end-->
           </div>
       </aside>

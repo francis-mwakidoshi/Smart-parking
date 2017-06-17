@@ -75,7 +75,7 @@ a:link{text-decoration:none;}
                     <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
 
                   <li class="mt">
-                      <a href="admin.php">
+                      <a href="attendant_portal.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -108,7 +108,7 @@ a:link{text-decoration:none;}
                       <th>cost</th>
                       <th>Customer</th>
                       <th>Status</th>
-                      <th>Delete </th>
+                      <th>Print </th>
                       </tr>
 <?php
 $sel="SELECT `requests`.`id`, `slots`, `hours`, `cost`, `customer`, `time`, `status`,`name` FROM `requests`,`parkings` WHERE `parkings`.`id`=`requests`.`parking_id`";
@@ -133,7 +133,7 @@ $i++;
 <td><?php echo $cost; ?></td>
 <td><?php echo $customer; ?></td>
 <td><?php echo $status; ?></td>
-<td><a href="request.php?delete=<?php echo $id; ?>">Delete</a></td>
+<td>Print</a></td>
 </tr>
 <?php }?>
 </table>

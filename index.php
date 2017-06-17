@@ -206,13 +206,9 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
     <fieldset>
       <label for="name">Name:</label>
       <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
-      <label for="name">Driving License No:</label>
-      <input type="text" name="DL" id="name"  class="text ui-widget-content ui-corner-all">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" placeholder="" class="text ui-widget-content ui-corner-all"  onchange="email_validate(this.value);" required>
       <p id="emailstatus"></p>
-      <label for="name">Phone No:</label>
-      <input type="text" name="phone" id="name"  class="text ui-widget-content ui-corner-all">
       <label for="password">Password</label>
      <input type="password" id="password" name="password" placeholder="" class="text ui-widget-content ui-corner-all" required>
       <label for="password">Confirm Password</label>
@@ -242,7 +238,7 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
 
            <form action="index.php" method="POST">
                    <div class="page-header">
-                     <center><h3 class="colors">Login to <small class="colors">Smart Parking</small></h3></center>
+                     <center><h3 class="colors">Login</h3></center>
                    </div>
              <label for=""></label>
              <input type="text" name="email" id="" placeholder="email" class="email">
@@ -250,9 +246,9 @@ var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{
              <label for=""></label>
              <input type="password" name="password" id="" placeholder="password" class="pass">
 
-             <button type="submit" name="login">login to your account</button>
+             <button type="submit" name="login">login</button>
 
-              <a class="btn link" data-toggle="modal" data-target="#myModal">Sign Up to Smart Parking Portal</a>
+              <a class="btn link" data-toggle="modal" data-target="#myModal">Sign Up</a>
 
 
            </form>

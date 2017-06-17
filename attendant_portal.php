@@ -69,16 +69,11 @@ else {
 
               	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
               	  <h5 class="centered"> <?php echo $_SESSION['username']; ?> </h5>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Parkings Details</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="request.php">Requests</a></li>
-                      </ul>
-                  </li>
+                
 
+              </ul>
+              <ul>
+                  <li><a  href="request.php">Requests</a></li>
               </ul>
               <!-- sidebar menu end-->
           </div>
