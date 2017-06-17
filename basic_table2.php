@@ -29,7 +29,6 @@ require 'update_slots.php';
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-
   </head>
 
   <body>
@@ -61,7 +60,7 @@ require 'update_slots.php';
                     <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
 
                   <li class="mt">
-                      <a href="attendant_portal.php">
+                      <a href="admin.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -80,65 +79,59 @@ require 'update_slots.php';
           <section class="wrapper">
 				<div class="row">
 
-	                  <div class="col-md-12">
-	                  	  <div class="content-panel">
+	                  <div class="col-md-12 mt">
+	                  	<div class="content-panel">
+	                          <table class="table table-bordered">
 
-	                  	  	  <hr>
-              <table class="table table-bordered">
-                      <tr align="center"><td colspan="6"><h2>View All Requests</h2></tr>
-                      <tr align="center">
-                      <th>S.N </th>
-                      <th>parking_name</th>
-                      <th>Slots </th>
-                      <th>hour</th>
-                      <th>cost</th>
-                      <th>Customer</th>
-                      <th>Status</th>
-                      <th>Print </th>
-                      </tr>
-<?php
-$sel="SELECT `requests`.`id`, `slots`, `hours`, `cost`, `customer`, `time`, `status`,`name` FROM `requests`,`parkings` WHERE `parkings`.`id`=`requests`.`parking_id`";
-$run=mysqli_query($con,$sel);
-$i=0;
-while($row=mysqli_fetch_array($run)){
-$id=$row['id'];
-$parking_name=$row['name'];
-$slots=$row['slots'];
-$hours=$row['hours'];
-$cost=$row['cost'];
-$customer=$row['customer'];
-$status=$row['status'];
-$i++;
+                                      <tr><h2>View All Parking Attendants </h2></tr>
+                                      <tr>
+                                      <th>S.N </th>
+                                      <th>Fname </th>
+                                      <th>Lname </th>
+                                      <th>mobile_no</th>
+                                      <th>location</th>
+                                      <th>Delete </th>
+                                      <th>Edit </th>
+                                      </tr>
+                <?php
+                $sel="select * from attendant";
+                $run=mysqli_query($con,$sel);
+                $i=0;
+                while($row=mysqli_fetch_array($run)){
+                $id_attendant=$row['id_attendant'];
+                $Fname=$row['Fname'];
+                $Lname=$row['Lname'];
+                $mobile_no=$row['mobile_no'];
+                $location=$row['location'];
+                $i++;
 
-?>
-<tr>
-<td><?php echo $i; ?></td>
-<td ><strong><?php echo $parking_name; ?></strong></td>
-<td><?php echo $slots; ?></td>
-<td><?php echo $hours; ?></td>
-<td><?php echo $cost; ?></td>
-<td><?php echo $customer; ?></td>
-<td><?php echo $status; ?></td>
-<td>Print</a></td>
-</tr>
-<?php }?>
-</table>
-<?php
-if(isset($_GET['delete']))
-{
-  $delete_id=$_GET['delete'];
-  $delete="DELETE FROM `requests` WHERE `requests`.`id` ='$delete_id'";
-  $run_delete=mysqli_query($con,$delete);
-  if($run_delete)
-  {
-    echo "<script>alert('request deleted successfully')</script>";
-    echo "<script>window.open('request.php','_self')</script>";
-  }
-}
-?>
-	                  	  </div><! --/content-panel -->
-	                  </div><!-- /col-md-12 -->
-
+                ?>
+                <tr>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $Fname; ?></td>
+                <td><?php echo $Lname; ?></td>
+                <td><?php echo $mobile_no; ?></td>
+                <td><?php echo $location; ?></td>
+                <td><a href="edit.php? edit=<?php echo $id_attendant; ?>">Edit</a</td>
+                <td><a href="basic_table.php?delete=<?php echo $id_attendant; ?>">Delete</a></td>
+                </tr>
+                <?php }?>
+                </table>
+                <?php
+                if(isset($_GET['delete']))
+                {
+                  $delete_id=$_GET['delete'];
+                  $delete="DELETE FROM `attendant` WHERE `attendant`.`id_attendant` ='$delete_id'";
+                  $run_delete=mysqli_query($con,$delete);
+                  if($run_delete)
+                  {
+                    echo "<script>alert('Attendant deleted successfully')</script>";
+                    echo "<script>window.open('basic_table.php','_self')</script>";
+                  }
+                }
+                ?>
+	                  	  </div>
+	                  </div>
 				</div>
 
 		</section><!--wrapper -->

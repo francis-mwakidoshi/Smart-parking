@@ -61,7 +61,7 @@ require 'update_slots.php';
                     <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
 
                   <li class="mt">
-                      <a href="attendant_portal.php">
+                      <a href="admin.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -83,10 +83,9 @@ require 'update_slots.php';
 	                  <div class="col-md-12">
 	                  	  <div class="content-panel">
 
-	                  	  	  <hr>
-              <table class="table table-bordered">
-                      <tr align="center"><td colspan="6"><h2>View All Requests</h2></tr>
-                      <tr align="center">
+              <table class="table table-bordered" >
+                      <tr><h2>View All Requests</h2></tr>
+                      <tr>
                       <th>S.N </th>
                       <th>parking_name</th>
                       <th>Slots </th>
@@ -113,7 +112,7 @@ $i++;
 ?>
 <tr>
 <td><?php echo $i; ?></td>
-<td ><strong><?php echo $parking_name; ?></strong></td>
+<td ><strong style="data-transform:uppercase !important;"><?php echo $parking_name; ?></strong></td>
 <td><?php echo $slots; ?></td>
 <td><?php echo $hours; ?></td>
 <td><?php echo $cost; ?></td>
@@ -136,7 +135,7 @@ if(isset($_GET['delete']))
   }
 }
 ?>
-	                  	  </div><! --/content-panel -->
+	                  	  </div><!--/content-panel -->
 	                  </div><!-- /col-md-12 -->
 
 				</div>

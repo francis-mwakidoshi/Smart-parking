@@ -36,6 +36,12 @@ else {
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+    a {
+    display: block;
+    padding: 8px 20px;
+}
+    </style>
   </head>
 
   <body>
@@ -70,13 +76,17 @@ else {
               	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
               	  <h5 class="centered"> <?php echo $_SESSION['email']; ?> </h5>
                      </ul>
+                     <div class="list">
+
+
                   <ul>
                       <li><a  href="blank.php">Upload New Parkings</a></li>
                       <li><a  href="attendant.php">Add new Parking Attendant</a></li>
                       <li><a  href="basic_table.php">Parkings</a></li>
-                        <li><a  href="basic_table.php">Attendants</a></li>
-                          <li><a  href="request.php">Requests</a></li>
+                        <li><a  href="basic_table2.php">Attendants</a></li>
+                          <li><a  href="admin_request.php">Requests</a></li>
                   </ul>
+                   </div>
 
               <!-- sidebar menu end-->
           </div>
