@@ -23,7 +23,7 @@ $query_parkings = "SELECT * FROM `parkings`";
     $sstreet = "`street` != 'null'";
   }else {
     $sstreet = "`street`='$street'";
-  }  
+  }
 
 $query_parkings = "SELECT * FROM `parkings` WHERE $scity AND $sstreet";
 }
@@ -41,6 +41,7 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
   $parking_name = $parking['name'];
   $parking_slot = $parking['slot'];
   $parking_price = $parking['price'];
+  $parking_remaining = $parking['remaining_slots'];
 ?>
 <div class="panel panel-default parking_text">
   <div class="panel-body">
@@ -49,8 +50,7 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
     <ul class="list-group">
       <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
       <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_location; ?></li>
-      <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_street; ?></li>
-      <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?></li>
+
     </ul>
     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
 
@@ -68,7 +68,7 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
         <ul class="list-group">
           <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
           <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?> total slots </li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_slot; ?> Remaining Slots</li>
+          <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_remaining; ?> Remaining Slots</li>
           <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span> Ksh. <?=$parking_price; ?> Per Slot Per Hour</li>
           <li class="list-group-item " ><span class="glyphicon">Ksh. </span> <p class="total" id="total<?=$parking_id; ?>"><?=$parking_slot; ?> </p></li>
           <li class="list-group-item">
@@ -88,13 +88,13 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
         </ul>
 
                             <h2 data-background-color="green">
-                                <span><i class="fa fa-cc-paypal" aria-hidden="true"></i></span> 
+                                <span><i class="fa fa-cc-paypal" aria-hidden="true"></i></span>
                                <span><i class="fa fa-cc-mastercard" aria-hidden="true"></i></i></span>
-                               <span><i class="fa fa-cc-visa" aria-hidden="true"></i></span> 
-                               <span><i class="fa fa-google-wallet" aria-hidden="true"></i></i></span> 
-                               <span><i class="fa fa-cc-discover" aria-hidden="true"></i></span> 
-                               <span><i class="fa fa-cc-stripe" aria-hidden="true"></i></span>                            
-                            </h2>        
+                               <span><i class="fa fa-cc-visa" aria-hidden="true"></i></span>
+                               <span><i class="fa fa-google-wallet" aria-hidden="true"></i></i></span>
+                               <span><i class="fa fa-cc-discover" aria-hidden="true"></i></span>
+                               <span><i class="fa fa-cc-stripe" aria-hidden="true"></i></span>
+                            </h2>
         <div id="slot_status<?=$parking_id; ?>"></div>
       </div>
       <div class="modal-footer">
@@ -231,13 +231,13 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
         </ul>
 
                             <h2>
-                                <span><i class="fa fa-cc-paypal" aria-hidden="true"></i></span> 
+                                <span><i class="fa fa-cc-paypal" aria-hidden="true"></i></span>
                                <span><i class="fa fa-cc-mastercard" aria-hidden="true"></i></i></span>
-                               <span><i class="fa fa-cc-visa" aria-hidden="true"></i></span> 
-                               <span><i class="fa fa-google-wallet" aria-hidden="true"></i></i></span> 
-                               <span><i class="fa fa-cc-discover" aria-hidden="true"></i></span> 
-                               <span><i class="fa fa-cc-stripe" aria-hidden="true"></i></span>                            
-                            </h2>        
+                               <span><i class="fa fa-cc-visa" aria-hidden="true"></i></span>
+                               <span><i class="fa fa-google-wallet" aria-hidden="true"></i></i></span>
+                               <span><i class="fa fa-cc-discover" aria-hidden="true"></i></span>
+                               <span><i class="fa fa-cc-stripe" aria-hidden="true"></i></span>
+                            </h2>
         <div id="slot_status<?=$parking_id; ?>"></div>
 
         <div id="status1<?=$parking_id; ?>"></div>
@@ -295,7 +295,7 @@ $("#select<?=$parking_id; ?>").click(function(){
 
         if(Number(slot) < Number(remaining) ){
            $("#status1<?=$parking_id; ?>").html("");
-           
+
             $("#select<?=$parking_id;?>").prop('disabled', false).attr('class', 'btn btn-primary').html('Select this space');
         }else{
            $("#status1<?=$parking_id; ?>").html("You chose Slots that exceeds the Remaining slots").css("color", "red");
@@ -308,7 +308,7 @@ $("#select<?=$parking_id; ?>").click(function(){
                 total = cost * hours * slot;
                 $("#total<?=$parking_id; ?>").html(total);
             }
-        
+
 
   });
 
@@ -321,7 +321,7 @@ $("#select<?=$parking_id; ?>").click(function(){
 <?php
 
 
-}  
+}
 }
 
  ?>

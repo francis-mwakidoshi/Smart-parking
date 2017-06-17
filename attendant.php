@@ -98,6 +98,12 @@ require 'update_slots.php';
           <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="location" name="location">
           </div>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="username" name="username">
+          </div>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Password" name="password">
+          </div>
         </div>
         <div class="form-group">
           <div class="col-sm-offset-6 col-sm-10">
@@ -120,6 +126,8 @@ if(isset($_POST['sub'])){
 	$Lname=mysqli_real_escape_string($con,$_POST['Lname']);
 	$mobile_no=mysqli_real_escape_string($con,$_POST['mobile_no']);
   $location=mysqli_real_escape_string($con,$_POST['location']);
+  $username=mysqli_real_escape_string($con,$_POST['username']);
+  $password=mysqli_real_escape_string($con,$_POST['password']);
 
   if($Fname==''&& $Lname==''&& $mobile_no=='' && $location==''){
 		echo"<script>alert('please fill all field')</script>";
@@ -128,7 +136,7 @@ if(isset($_POST['sub'])){
 	}
   else{
 
-		$insert="INSERT INTO `attendant` (`id`, `Fname`, `Lname`, `mobile_no`, `location`) VALUES (NULL, '$Fname', '$Lname', '$mobile_no', '$location');";
+		$insert="INSERT INTO `attendant` (`id_attendant`, `Fname`, `Lname`, `mobile_no`, `location`,`username`,`password`) VALUES (NULL, '$Fname', '$Lname', '$mobile_no', '$location','$username','$password');";
 		$run_insert=mysqli_query($con,$insert);
 		if($run_insert){
 			echo"<script>alert('registration successful')</script>";

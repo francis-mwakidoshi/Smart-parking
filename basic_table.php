@@ -171,7 +171,7 @@ if(isset($_GET['delete']))
                 $run=mysqli_query($con,$sel);
                 $i=0;
                 while($row=mysqli_fetch_array($run)){
-                $id=$row['id'];
+                $id_attendant=$row['id_attendant'];
                 $Fname=$row['Fname'];
                 $Lname=$row['Lname'];
                 $mobile_no=$row['mobile_no'];
@@ -185,8 +185,8 @@ if(isset($_GET['delete']))
                 <td><?php echo $Lname; ?></td>
                 <td><?php echo $mobile_no; ?></td>
                 <td><?php echo $location; ?></td>
-                <td><a href="edit.php? edit=<?php echo $id; ?>">Edit</a</td>
-                <td><a href="basic_table.php?delete=<?php echo $id; ?>">Delete</a></td>
+                <td><a href="edit.php? edit=<?php echo $id_attendant; ?>">Edit</a</td>
+                <td><a href="basic_table.php?delete=<?php echo $id_attendant; ?>">Delete</a></td>
                 </tr>
                 <?php }?>
                 </table>
@@ -194,7 +194,7 @@ if(isset($_GET['delete']))
                 if(isset($_GET['delete']))
                 {
                   $delete_id=$_GET['delete'];
-                  $delete="DELETE FROM `attendant` WHERE `attendant`.`id` ='$delete_id'";
+                  $delete="DELETE FROM `attendant` WHERE `attendant`.`id_attendant` ='$delete_id'";
                   $run_delete=mysqli_query($con,$delete);
                   if($run_delete)
                   {
@@ -203,112 +203,15 @@ if(isset($_GET['delete']))
                   }
                 }
                 ?>
-	                  	  </div><! --/content-panel -->
-	                  </div><!-- /col-md-12 -->
-				</div><!-- row -->
+	                  	  </div>
+	                  </div>
+				</div>
 
-              <div class="row mt">
-                  <div class="col-md-12">
-                      <div class="content-panel">
-                          <table class="table table-striped table-advance table-hover">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Advanced Table</h4>
-	                  	  	  <hr>
-                              <thead>
-                              <tr>
-                                  <th><i class="fa fa-bullhorn"></i> Company</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descrition</th>
-                                  <th><i class="fa fa-bookmark"></i> Profit</th>
-                                  <th><i class=" fa fa-edit"></i> Status</th>
-                                  <th></th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr>
-                                  <td><a href="basic_table.html#">Company Ltd</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>12000.00$ </td>
-                                  <td><span class="label label-info label-mini">Due</span></td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Dashgum co
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>17900.00$ </td>
-                                  <td><span class="label label-warning label-mini">Due</span></td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Another Co
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>14400.00$ </td>
-                                  <td><span class="label label-success label-mini">Paid</span></td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Dashgum ext
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>22000.50$ </td>
-                                  <td><span class="label label-success label-mini">Paid</span></td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td><a href="basic_table.html#">Total Ltd</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>12120.00$ </td>
-                                  <td><span class="label label-warning label-mini">Due</span></td>
-                                  <td>
-                                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              </tbody>
-                          </table>
-                      </div><!-- /content-panel -->
-                  </div><!-- /col-md-12 -->
-              </div><!-- /row -->
-
-		</section><! --/wrapper -->
+		</section><!--wrapper -->
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              &copy; <?php echo date("Y"); ?> Copyright.
-              <a href="basic_table.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
+    
       <!--footer end-->
   </section>
 

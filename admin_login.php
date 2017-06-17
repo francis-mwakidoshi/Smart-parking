@@ -45,12 +45,8 @@ require 'mysqlConnect.php';
 		            <input type="text" name="email" class="form-control" placeholder="email" autofocus>
 		            <br>
 		            <input type="password" name="password"  class="form-control" placeholder="Password">
-		            <label class="checkbox">
-		                <span class="pull-right">
-		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
-
-		                </span>
-		            </label>
+              </br>
+            </br>
 		            <button class="btn btn-theme btn-block" href="index.php" name='admin_login'  type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
 		          <!-- Modal -->
 		          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
