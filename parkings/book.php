@@ -9,7 +9,7 @@ if($_POST){
   $slots_cost = $_POST['slots_cost'];
   $slot_id = $_POST['slot_id'];
   $slot_hours = $_POST['slot_hours'];
-  $customer = $_SESSION['email'];
+  $customer = $_SESSION['driver_email'];
 
 $check_cust = "SELECT * FROM `requests` WHERE `customer`='$customer' AND `status`='requested'";
 $result_cust = mysqli_query($con, $check_cust);

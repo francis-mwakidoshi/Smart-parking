@@ -14,7 +14,7 @@ require '../mysqlConnect.php';
 <div class="panel-body ">
 
 </div class="table-responsive ">
-<table class="table  table-bordered table-striped table-hover " id="example">
+<table class="table  table-bordered table-striped table-hover " >
 <thaed>
   <th>#</th>
   <th>Parking</th>
@@ -32,7 +32,7 @@ require '../mysqlConnect.php';
 </thead>
 <tbody>
 <?php
-$customer = $_SESSION['email'];  
+$customer = $_SESSION['driver_email'];  
 if ($_POST) {
     $stat = $_POST['status'];
        
@@ -62,7 +62,7 @@ while ($request = mysqli_fetch_array($res)) {
   <td>Ksh. <?=$cost; ?></td>
   <td><?=$time; ?></td>
   <td><?=$stat; ?></td>
-  <td><button class="btn btn-default" type="submit">Cancel Request</button></td>
+  <td></td>
 </tr>
 
 <?php    
@@ -90,7 +90,7 @@ while ($request = mysqli_fetch_array($res)) {
     $stat = $request['status'];
     $location = $request['location'];
     $street = $request['street'];
-$url = "";
+$url = "print.php?request_id=".urlencode($id);
 ?>
 <tr>
   <td>#</td>
@@ -102,7 +102,7 @@ $url = "";
   <td>Ksh. <?=$cost; ?></td>
   <td><?=$time; ?></td>
   <td><?=$stat; ?></td>
-  <td><a href="print.php?" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-save-file"></span> Print</a></td>
+  <td><a href="<?=$url;?> " class="btn btn-default" type="submit"><span class="glyphicon glyphicon-save-file"></span> Print</a></td>
 </tr>
 
 <?php    

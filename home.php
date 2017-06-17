@@ -2,7 +2,7 @@
 session_start();
 require 'mysqlConnect.php';
 require 'update_slots.php';
-if (!$_SESSION['email']) {
+if (!$_SESSION['driver_email']) {
   header("location: index.php");
 }
 else {
@@ -22,6 +22,7 @@ else {
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="datatable/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="datatable/keyTable.bootstrap.min.css" rel="stylesheet">
+    
     <style>
         body {
           font-family: "Open Sans Condensed", sans-serif;
@@ -134,8 +135,6 @@ else {
              </li>
 
              <li class="list-group-item" id="requests"><a><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
-             <a id="receipt"><li class="list-group-item">Receipt Printing</li></a>
-             <li class="list-group-item">Vestibulum at eros</li>
            </ul>
          </div>
 

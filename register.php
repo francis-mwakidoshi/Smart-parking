@@ -28,7 +28,7 @@ if(isset($_POST['register'])){
 		exit();
 	}
 	else{
-		$_SESSION['email']=$email;
+		$_SESSION['driver_email']=$email;
 		$insert="INSERT INTO `users` (`id`, `name`, `email`, `password`,`password_confirm`) VALUES (NULL, '$name', '$email', '$password', '$password_confirm')";
 		$run_insert=mysqli_query($con,$insert);
 		if($run_insert){

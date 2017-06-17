@@ -276,7 +276,7 @@ echo"<script>alert('password or email is not correct,try again!')</script>";
 exit();
 }
 else{
-$_SESSION['email']=$email;
+$_SESSION['driver_email']=$email;
 echo"<script>window.open('home.php','_self')</script>";
 }
 }
