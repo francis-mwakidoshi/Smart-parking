@@ -1,5 +1,6 @@
 <?php
 require 'mysqlConnect.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +87,12 @@ require 'mysqlConnect.php';
         </div>
         <div class="form-group">
           <div class="col-sm-10">
-            <input type="text" class="form-control"  placeholder="Street" name="street">
+              <select name="street" class="form-control">
+                <option value="">Select Street</option>
+                 <option value="Tudor">Tudor</option>
+                 <option value="Kizingo">Kizingo</option>
+                 <option value="Tononoka">Tononoka</option>
+              </select>           
           </div>
         </div>
         <div class="form-group">

@@ -1,6 +1,7 @@
 <?php session_start();
 require 'mysqlConnect.php';
-require 'update_slots.php';
+
+require 'attendant_details.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ require 'update_slots.php';
               <ul class="sidebar-menu" id="nav-accordion">
 
                     <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                    <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
+                    <h5 class="centered" style="text-transform:uppercase;"> <?=$fname ." ".$lname; ?></h5>
 
                   <li class="mt">
                       <a href="attendant_portal.php">
@@ -109,7 +110,8 @@ $cost=$row['cost'];
 $customer=$row['customer'];
 $status=$row['status'];
 $i++;
-
+ 
+ $url = "attendant_receipt_print.php?request_id=".urlencode($id); 
 ?>
 <tr>
 <td><?php echo $i; ?></td>
@@ -119,7 +121,11 @@ $i++;
 <td><?php echo $cost; ?></td>
 <td><?php echo $customer; ?></td>
 <td><?php echo $status; ?></td>
-<td>Print</a></td>
+<td><?php
+   if($status=='requested'){?>
+       <a href="<?=$url?>">Print</a>
+<?php   }
+?></td>
 </tr>
 <?php }?>
 </table>
@@ -136,7 +142,7 @@ if(isset($_GET['delete']))
   }
 }
 ?>
-	                  	  </div><! --/content-panel -->
+	                  	  </div><!--/content-panel -->
 	                  </div><!-- /col-md-12 -->
 
 				</div>

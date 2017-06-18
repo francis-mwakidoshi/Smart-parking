@@ -22,6 +22,10 @@ require 'update_slots.php';
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
+           <link href="assets/css/bootstrap.css" rel="stylesheet">  
+           <link href="dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+           <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+          <link rel="stylesheet" href="dataTables/js/reports-plugins/buttons.dataTables.min.css"/>      
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -82,9 +86,10 @@ require 'update_slots.php';
 
 	                  <div class="col-md-12">
 	                  	  <div class="content-panel">
+<h2>View All Requests</h2>
 
               <table class="table table-bordered" >
-                      <tr><h2>View All Requests</h2></tr>
+                      <thead>
                       <tr>
                       <th>S.N </th>
                       <th>parking_name</th>
@@ -92,9 +97,9 @@ require 'update_slots.php';
                       <th>hour</th>
                       <th>cost</th>
                       <th>Customer</th>
-                      <th>Status</th>
-                      <th>Print </th>
+                      <th>Status</th>           
                       </tr>
+                      </thead>
 <?php
 $sel="SELECT `requests`.`id`, `slots`, `hours`, `cost`, `customer`, `time`, `status`,`name` FROM `requests`,`parkings` WHERE `parkings`.`id`=`requests`.`parking_id`";
 $run=mysqli_query($con,$sel);
@@ -118,7 +123,6 @@ $i++;
 <td><?php echo $cost; ?></td>
 <td><?php echo $customer; ?></td>
 <td><?php echo $status; ?></td>
-<td>Print</a></td>
 </tr>
 <?php }?>
 </table>
@@ -149,7 +153,7 @@ if(isset($_GET['delete']))
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
+
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
@@ -170,5 +174,31 @@ if(isset($_GET['delete']))
 
   </script>
 
+     <!-- DATA TABLE SCRIPTS -->
+        <script type="text/javascript" src="dataTables/js/jquery.min.js"></script>
+         <script type="text/javascript" src="dataTables/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dataTables/js/jquery.dataTables.min.js"></script>
+       
+        <script src="dataTables/js/reports-plugins/dataTables.buttons.min.js"></script>
+        <script src="dataTables/js/reports-plugins/jszip.min.js"></script>
+        <script src="dataTables/js/reports-plugins/pdfmake.min.js"></script>
+        <script src="dataTables/js/reports-plugins/vfs_fonts.js"></script>
+        <script src="dataTables/js/reports-plugins/buttons.flash.min.js"></script>
+        <script src="dataTables/js/reports-plugins/buttons.html5.min.js"></script>
+        <script src="dataTables/js/reports-plugins/buttons.print.min.js"></script>     
+        <script>
+          function loadData(){
+           
+             $(".table").DataTable({
+                 dom: 'Bflirt',
+                 buttons: [
+                     'excel','pdf', 'print'
+                 ]
+             });
+          }
+          document.onready= function (){
+                loadData();
+            }
+    </script>
   </body>
 </html>

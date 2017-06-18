@@ -23,7 +23,7 @@ if(mysqli_num_rows($result_cust)>0){
 
         if (mysqli_num_rows($result_avail)>0) {
               while($avail = mysqli_fetch_array($result_avail)){
-                $slots = $avail['slot'];
+                $slots = 1;
                 $remaining_slots = $avail['remaining_slots'];
               }
 

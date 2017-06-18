@@ -1,8 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Print Invoice (Not Paid)</title>
+    <title>Print Invoice (Paid)</title>
 
-    <link href="assets/css/bootstrap.css" rel="stylesheet">  
+           <link href="assets/css/bootstrap.css" rel="stylesheet">  
            <link href="dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
            <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
           <link rel="stylesheet" href="dataTables/js/reports-plugins/buttons.dataTables.min.css"/>     
@@ -26,7 +26,7 @@ body {
 
 <div class="panel-body">
 <div class="table-responsive col-md-6 col-md-offset-3">
-<a href="request.php" type="button" class="btn btn-primary btn-lg"><i class="fa fa-home" aria-hidden="true"></i> Go Back Home</a>
+<a href="request.php" type="button" class="btn btn-primary btn-lg"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Go Back To Requests</a>
 <hr>
 <table class="table table-bordered table-hover" >
   <thead style="background: #000 !important; color: #fff;">
@@ -39,9 +39,9 @@ body {
 <?php
 session_start();
 require 'mysqlConnect.php';
-require 'update_slots.php';
+require 'attendant_details.php';
 $req_id = $_GET['request_id'];
-    $req = "SELECT `requests`.`id`, `parking_id`, `slots`, `hours`, `cost`, `time`, `status`,`location`, `street`, `name` FROM `requests`,`parkings` WHERE `requests`.`parking_id`=`parkings`.`id` AND `requests`.`id`='$req_id ' AND `requests`.`customer`= '{$_SESSION['driver_email']}' ";
+    $req = "SELECT `requests`.`id`, `parking_id`, `slots`, `hours`, `cost`, `time`, `status`,`location`, `street`, `name` FROM `requests`,`parkings` WHERE `requests`.`parking_id`=`parkings`.`id` AND `requests`.`id`='$req_id '  ";
 
     $res = mysqli_query($con, $req);
 
@@ -51,11 +51,32 @@ while ($request = mysqli_fetch_array($res)) {
     $slots= $request['slots'];
     $hours = $request['hours'];
     $cost = $request['cost'];
-    $time = $request['time'];
     $stat = $request['status'];
     $location = $request['location'];
     $when = $request['time'];
     $street = $request['street'];
+    $parking_id = $request['parking_id'];
+
+  $time = time();
+  $secs = strtotime($when );
+
+  $diff = $time-$secs;
+  $diff_h = $diff/3600; 
+
+  $amount_charged = round($diff_h * $cost); 
+
+  $exceeded_time =round(abs($diff_h-$hours));
+
+  
+    if($stat=='requested'){
+            $update_request = "UPDATE `requests` SET `status`='Completed' WHERE `id`='$id'";
+            $update_parkings = "UPDATE `parkings` SET `remaining_slots`=`remaining_slots`+'1' WHERE `id`='$parking_id'";
+
+                if (mysqli_query($con, $update_request) && mysqli_query($con, $update_parkings)) {
+                     
+                }        
+    }
+     
 
 ?>
 
@@ -65,8 +86,8 @@ while ($request = mysqli_fetch_array($res)) {
 </tr>
 
 <tr>
-<td>Email:</td>
-<td><?=$_SESSION['driver_email']; ?> Parking</td>
+<td>Served By:</td>
+<td><?=$fname." ".$lname;?></td>
 </tr>
 
 <tr>
@@ -91,12 +112,28 @@ while ($request = mysqli_fetch_array($res)) {
 
 <tr>
 <td>Amount Charged:</td> 
-<td>Ksh. <?=$cost; ?></td>
+<td>Ksh. <?=$amount_charged; ?></td>
 </tr>
 
 <tr>
 <td>Request Time:</td>
 <td><?=$when; ?> </td>
+</tr>
+
+<tr>
+<td>Status:</td>
+<td><?php
+if($diff_h >= $hours){
+    ?>
+      Time Was Exceeded by <?=$exceeded_time;?> Hours
+    <?php
+}else{
+    ?>
+      Met the time requirement  
+    <?php
+}
+
+ ?> </td>
 </tr>
 <?php    
 

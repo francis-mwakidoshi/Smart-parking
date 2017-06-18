@@ -48,11 +48,11 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
     <h4 class="Head"><?=$parking_name; ?></h4>
     <hr>
     <ul class="list-group">
-      <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?> (<?=$parking_remaining;?>)</li>
       <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span> <?=$parking_location; ?></li>
 
     </ul>
-    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
+    <button class="btn btn-default" data-backdrop="false" type="button" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
 
   </div>
 </div>
@@ -67,16 +67,10 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
       <div class="modal-body">
         <ul class="list-group">
           <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?> total slots </li>
           <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_remaining; ?> Remaining Slots</li>
           <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span> Ksh. <?=$parking_price; ?> Per Slot Per Hour</li>
           <li class="list-group-item " ><span class="glyphicon">Ksh. </span> <p class="total" id="total<?=$parking_id; ?>"><?=$parking_slot; ?> </p></li>
-          <li class="list-group-item">
-            <div class="input-group">
-              <input type="text" class="form-control" id="slot<?=$parking_id ; ?>" placeholder="Number of slots" aria-describedby="basic-addon2">
-              <span class="input-group-addon" id="basic-addon2">Slots</span>
-            </div>
-          </li>
+
           <li class="list-group-item">
             <div class="input-group">
               <input type="text" class="form-control"  id="hour<?=$parking_id; ?>" placeholder="Number of Hours" aria-describedby="basic-addon2">
@@ -108,17 +102,25 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
 <script>
 $(function(){
   $('#hour<?=$parking_id; ?>').keyup(function(){
-        var slot = $('#slot<?=$parking_id; ?>').val();
         var hours = $('#hour<?=$parking_id; ?>').val();
         var total='';
         var cost = "<?=$parking_price; ?>";
 
-        if (slot=='' || hours=='') {
-             $("#total<?=$parking_id; ?>").html("FILL NUMBER OF SLOTS VALUES");
+        var remaining = "<?=$parking_remaining; ?>";
+
+        if( Number(remaining) > 0 ){
+           $("#slot_status<?=$parking_id; ?>").html("");
+           $("#total<?=$parking_id; ?>").html("Cannot Add A Value");
+            $("#select<?=$parking_id;?>").prop('disabled', false).attr('class', 'btn btn-primary').html('Select this space');
         }else{
+           $("#slot_status<?=$parking_id; ?>").html("This Parking is Fully Packed and Can Not Hold More Request").css("color", "red");
+           $("#select<?=$parking_id;?>").prop('disabled', true).attr('class', 'btn btn-danger').html('Disabled...');
+        }
+                total = cost * hours ;
+                $("#total<?=$parking_id; ?>").html(total);
             total = cost * hours * slot;
             $("#total<?=$parking_id; ?>").html(total);
-        }
+
   });
 
 $("#select<?=$parking_id; ?>").click(function(){
@@ -139,19 +141,7 @@ $("#select<?=$parking_id; ?>").click(function(){
     }
 })
 
-  $('#slot<?=$parking_id; ?>').keyup(function(){
-        var slot = $('#slot<?=$parking_id; ?>').val();
-        var hours = $('#hour<?=$parking_id; ?>').val();
-        var total='';
-        var cost = "<?=$parking_price; ?>";
 
-        if (slot=='' || hours=='') {
-             $("#total<?=$parking_id; ?>").html("FILL HOURS VALUES");
-        }else{
-            total = cost * hours * slot;
-            $("#total<?=$parking_id; ?>").html(total);
-        }
-  });
 
 
 
@@ -190,10 +180,10 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
     <h4 class="Head"><?=$parking_name; ?></h4>
     <hr>
     <ul class="list-group">
-      <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
+      <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?>  (<?=$parking_remaining;?>)</li>
 
     </ul>
-    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
+    <button class="btn btn-default" type="button" data-backdrop="false" data-toggle="modal" data-target="#reserve<?=$parking_id ; ?>">select Now!!</button>
 
   </div>
 </div>
@@ -208,17 +198,12 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
       <div class="modal-body">
         <ul class="list-group">
           <li class="list-group-item"><span class="glyphicon glyphicon-home"></span> <?=$parking_name; ?></li>
-          <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span> <?=$parking_slot; ?> total slots </li>
 
           <li class="list-group-item"><span class="glyphicon glyphicon-tag"></span> <?=$parking_remaining; ?> Remaining Slots</li>
 
           <li class="list-group-item"><span class="glyphicon glyphicon-credit-card"></span> Ksh. <?=$parking_price; ?> Per Slot Per Hour</li>
           <li class="list-group-item " ><span class="glyphicon">Ksh. </span> <p class="total" id="total<?=$parking_id; ?>"><?=$parking_slot; ?> </p></li>
-          <li class="list-group-item">
-            <div class="input-group">
-              <input type="text" class="form-control" id="slot<?=$parking_id ; ?>" placeholder="Number of slots" aria-describedby="basic-addon2">
-              <span class="input-group-addon" id="basic-addon2">Slots</span>
-            </div>
+
           </li>
           <li class="list-group-item">
             <div class="input-group">
@@ -254,29 +239,33 @@ while ($parking = mysqli_fetch_array($parkings_result)) {
 <script>
 $(function(){
   $('#hour<?=$parking_id; ?>').keyup(function(){
-        var slot = $('#slot<?=$parking_id; ?>').val();
         var hours = $('#hour<?=$parking_id; ?>').val();
         var total='';
         var cost = "<?=$parking_price; ?>";
 
-        if (slot=='' || hours=='') {
-             $("#total<?=$parking_id; ?>").html("FILL NUMBER OF SLOTS VALUES");
+        var remaining = "<?=$parking_remaining; ?>";
+
+        if( Number(remaining)> 0 ){
+           $("#slot_status<?=$parking_id; ?>").html("");
+           $("#total<?=$parking_id; ?>").html("Cannot Add A Value");
+            $("#select<?=$parking_id;?>").prop('disabled', false).attr('class', 'btn btn-primary').html('Select this space');
         }else{
-            total = cost * hours * slot;
-            $("#total<?=$parking_id; ?>").html(total);
+           $("#slot_status<?=$parking_id; ?>").html("This Parking is Fully Packed and Can Not Hold More Request").css("color", "red");
+           $("#select<?=$parking_id;?>").prop('disabled', true).attr('class', 'btn btn-danger').html('Disabled...');
         }
+            total = cost * hours ;
+            $("#total<?=$parking_id; ?>").html(total);
+
   });
 
 $("#select<?=$parking_id; ?>").click(function(){
-  var slot_no1 = $("#slot<?=$parking_id ; ?>").val();
-  var slots_cost1 = $("#total<?=$parking_id; ?>").html()  ;
   var slot_id1 = "<?=$parking_id; ?>";
   var slot_hours1 = $("#hour<?=$parking_id; ?>").val();
     if(slots_cost1 > 0){
-        if(slot_no1==''||slot_hours1==''){
+        if(slot_hours1==''){
              $("#slot_status<?=$parking_id; ?>").html("Fill in input fields first").css("color", "red");
         }else{
-          $.post("parkings/book.php",{slot_no:slot_no1, slots_cost:slots_cost1, slot_hours:slot_hours1, slot_id:slot_id1}, function(data){
+          $.post("parkings/book.php",{ slots_cost:slots_cost1, slot_hours:slot_hours1, slot_id:slot_id1}, function(data){
              $("#slot_status<?=$parking_id; ?>").html(data);
           })
         }
@@ -285,32 +274,7 @@ $("#select<?=$parking_id; ?>").click(function(){
     }
 })
 
-  $('#slot<?=$parking_id; ?>').keyup(function(){
-        var slot = $('#slot<?=$parking_id; ?>').val();
-        var hours = $('#hour<?=$parking_id; ?>').val();
-        var total='';
-        var cost = "<?=$parking_price; ?>";
 
-        var remaining = "<?=$parking_remaining; ?>";
-
-        if(Number(slot) < Number(remaining) ){
-           $("#status1<?=$parking_id; ?>").html("");
-
-            $("#select<?=$parking_id;?>").prop('disabled', false).attr('class', 'btn btn-primary').html('Select this space');
-        }else{
-           $("#status1<?=$parking_id; ?>").html("You chose Slots that exceeds the Remaining slots").css("color", "red");
-           $("#select<?=$parking_id;?>").prop('disabled', true).attr('class', 'btn btn-danger').html('Disabled...');
-        }
-
-            if (slot=='' || hours=='') {
-                $("#total<?=$parking_id; ?>").html("FILL HOURS VALUES");
-            }else{
-                total = cost * hours * slot;
-                $("#total<?=$parking_id; ?>").html(total);
-            }
-
-
-  });
 
 
 
