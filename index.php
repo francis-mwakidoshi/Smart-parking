@@ -25,7 +25,7 @@ body {
   background: #999;
   padding: 40px;
   font-family: "Open Sans Condensed", sans-serif;
-  background: url(assets/img/1.jpg) no-repeat center center fixed;
+  background: url(assets/img/Smp.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 .colors {
@@ -101,6 +101,10 @@ form input.pass {
   background-position: 223px 8px
 }
 
+form label {
+   color: #b2dfdb !important;
+}
+
 ::-webkit-input-placeholder { color: #ccc; text-transform: uppercase; }
 ::-moz-placeholder { color: #ccc; text-transform: uppercase; }
 :-ms-input-placeholder { color: #ccc; text-transform: uppercase; }
@@ -162,7 +166,7 @@ form button[type=submit] {
 
 .modal-backdrop {
    background-color: #9e9e9e;
-   opacity:0.7 !important;
+   opacity:0.8 !important;
 }
 </style>
 <script type="text/javascript">
@@ -244,10 +248,10 @@ $(".modal-transparent").on('hidden.bs.modal', function () {
     <div class="overlay">
     <div class="row">
       <div class="container">
-         <div class="col-md-2"></div>
-         <div class="col-md-6">
+         <div class="col-md-4"></div>
+         <div class="col-md-4">
                <div class="page-header">
-                 <center><h1 class="colors">SMART PARKING <small class="colors">Web Portal</small></h1></center>
+                 <center><h1 class="colors">SMART PARKING Portal</h1></center>
                </div>
          </div>
          <div class="col-md-4"></div>
@@ -296,11 +300,10 @@ $(".modal-transparent").on('hidden.bs.modal', function () {
   </div>
     <div class="row">
       <div class="container">
-         <div class="col-md-8"></div>
+         <div class="col-md-4"></div>
          <div class="col-md-4">
-
-
-           <div id="bg"></div>
+         
+             <div id="bg"></div>
 
            <form action="index.php" method="POST" id="">
                    <div class="page-header">
@@ -318,8 +321,9 @@ $(".modal-transparent").on('hidden.bs.modal', function () {
 
 
            </form>
-
+       
          </div>
+         <div class="col-md-4"> </div>
     </div>
   </div>
 </div>
