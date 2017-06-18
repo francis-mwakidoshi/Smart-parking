@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Print Receipt</title>
+    <title>Print Invoice (Not Paid)</title>
 
     <link href="assets/css/bootstrap.css" rel="stylesheet">  
            <link href="dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
@@ -138,7 +138,7 @@ while ($request = mysqli_fetch_array($res)) {
              $(".table").DataTable({
                  dom: 'Bfrtip',
                  buttons: [
-                     'copy', 'excel', 'pdf', 'print'
+                     'pdf', 'print'
                  ]
              });
           }

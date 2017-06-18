@@ -86,7 +86,7 @@ else {
   <div class="col-md-4">
     <div class="dropdown">
       <br><h4 class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['email']; ?>
+        <span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['driver_email']; ?>
         <span class="caret"></span>
       </h4 >
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
