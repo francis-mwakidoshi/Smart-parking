@@ -21,6 +21,7 @@ else {
 
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="datatable/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="datatable/keyTable.bootstrap.min.css" rel="stylesheet">
     <link href="custom.css" rel="stylesheet">
     <style>
@@ -90,6 +91,8 @@ else {
              </li>
 
              <li class="list-group-item" id="requests"><a><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
+
+             <li class="list-group-item" id="requests"><a href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i> lOGOUT</a></li>             
            </ul>
          </div>
 
