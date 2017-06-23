@@ -56,7 +56,7 @@ require 'update_slots.php';
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-                    <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                    <p class="centered"><a href="#"><img src="assets/img/assistant-144.png" class="img-circle" width="60"></a></p>
                     <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
 
                   <li class="mt">
@@ -89,7 +89,7 @@ require 'update_slots.php';
                                       <th>Fname </th>
                                       <th>Lname </th>
                                       <th>mobile_no</th>
-                                      <th>location</th>
+                                      <th>Street</th>
                                       <th>Delete </th>
                                       <th>Edit </th>
                                       </tr>
@@ -112,7 +112,7 @@ require 'update_slots.php';
                 <td><?php echo $Lname; ?></td>
                 <td><?php echo $mobile_no; ?></td>
                 <td><?php echo $location; ?></td>
-                <td><a href="edit.php? edit=<?php echo $id_attendant; ?>">Edit</a</td>
+                <td><a href="edit2.php? edit=<?php echo $id_attendant; ?>">Edit</a</td>
                 <td><a href="basic_table.php?delete=<?php echo $id_attendant; ?>">Delete</a></td>
                 </tr>
                 <?php }?>

@@ -1,7 +1,21 @@
-<?php session_start();
+<?php
+session_start();
+
 require 'mysqlConnect.php';
 
-require 'attendant_details.php';
+if(isset($_GET['edit'])){
+    $edit_id=$_GET['edit'];
+
+    $sel="select * from attendant where id_attendant='$edit_id'";
+    $run=mysqli_query($con,$sel);
+
+    $row=mysqli_fetch_array($run);
+    $Fname=$row['Fname'];
+    $Lname=$row['Lname'];
+    $mobile_no=$row['mobile_no'];
+    $location=$row['location'];
+    $username=$row['username'];
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +42,7 @@ require 'attendant_details.php';
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
     <![endif]-->
-
   </head>
 
   <body>
@@ -43,14 +55,10 @@ require 'attendant_details.php';
       <header class="header black-bg">
 
             <!--logo start-->
-            <a href="index.php" class="logo"><b>Smart-parking</b></a>
+            <a href="index.php" class="logo"><b>smart-parking</b></a>
             <!--logo end-->
-               <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="logout.php" style="background-color:#ffd777;">Logout</a></li>
-            	</ul>
+            <div class="top-menu">
             </div>
-
         </header>
       <!--header end-->
 
@@ -62,14 +70,17 @@ require 'attendant_details.php';
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-                    
-                  <li class="mt">
-                  <a><h5  style="text-transform:uppercase;"> <?=$fname ." ".$lname; ?></h5></a>
-                      <a href="attendant_portal.php">
+
+              	  <p class="centered"><a href="#"><img src="assets/img/assistant-144.png" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
+
+                    <li class="mt">
+                      <a href="admin.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
+
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -81,86 +92,89 @@ require 'attendant_details.php';
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">
-				<div class="row">
+          <section class="wrapper site-min-height">
+            <h3><i class="fa fa-angle-right"></i> Update Attendant Details</h3>
+          	<div class="row mt">
+          		<div class="col-lg-12">
+              <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="location" value="<?php echo $location; ?>"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"   name="Fname" value="<?php echo $Fname; ?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"   name="Lname" value="<?php echo $Lname; ?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  name="username" value="<?php echo $username; ?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" class="form-control"  name="mobile_no" value="<?php echo $mobile_no; ?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-6 col-sm-10">
+            <button type="submit" class="btn btn-default" name="update">Update</button>
+          </div>
+        </div>
+      </form>
+          		</div>
+          	</div>
 
-	                  <div class="col-md-12">
-	                  	  <div class="content-panel">
-
-	                  	  	  <hr>
-              <table class="table table-bordered">
-                      <tr align="center"><td colspan="6"><h2>View All Requests</h2></tr>
-                      <tr align="center">
-                      <th>S.N </th>
-                      <th>parking_name</th>
-                      <th>Slots </th>
-                      <th>hour</th>
-                      <th>cost</th>
-                      <th>Customer</th>
-                      <th>Status</th>
-                      <th>Print </th>
-                      </tr>
-<?php
-$sel="SELECT `requests`.`id`, `slots`, `hours`, `cost`, `customer`, `time`, `status`,`name` FROM `requests`,`parkings` WHERE `parkings`.`id`=`requests`.`parking_id` AND `parkings`.`attendant`='{$_SESSION['username']}'";
-$run=mysqli_query($con,$sel)or die(mysqli_error($con));
-$i=0;
-while($row=mysqli_fetch_array($run)){
-$id=$row['id'];
-$parking_name=$row['name'];
-$slots=$row['slots'];
-$hours=$row['hours'];
-$cost=$row['cost'];
-$customer=$row['customer'];
-$status=$row['status'];
-$i++;
- 
- $url = "attendant_receipt_print.php?request_id=".urlencode($id); 
-?>
-<tr>
-<td><?php echo $i; ?></td>
-<td ><strong><?php echo $parking_name; ?></strong></td>
-<td><?php echo $slots; ?></td>
-<td><?php echo $hours; ?></td>
-<td><?php echo $cost; ?></td>
-<td><?php echo $customer; ?></td>
-<td><?php echo $status; ?></td>
-<td><?php
-   if($status=='requested'){?>
-       <a href="<?=$url?>">Print</a>
-<?php   }
-?></td>
-</tr>
-<?php }?>
-</table>
-<?php
-if(isset($_GET['delete']))
-{
-  $delete_id=$_GET['delete'];
-  $delete="DELETE FROM `requests` WHERE `requests`.`id` ='$delete_id'";
-  $run_delete=mysqli_query($con,$delete);
-  if($run_delete)
-  {
-    echo "<script>alert('request deleted successfully')</script>";
-    echo "<script>window.open('request.php','_self')</script>";
-  }
-}
-?>
-	                  	  </div><!--/content-panel -->
-	                  </div><!-- /col-md-12 -->
-
-				</div>
-
-		</section><!--wrapper -->
+		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
+      <!--footer start-->
+      <?php
+if(isset($_POST['update'])){
 
+  $location = mysqli_real_escape_string($con,$_POST['location']);
+  $Fname=mysqli_real_escape_string($con,$_POST['Fname']);
+  $Lname =mysqli_real_escape_string($con,$_POST['Lname']);
+  $mobile_no =mysqli_real_escape_string($con,$_POST['mobile_no']);
+  $username =mysqli_real_escape_string($con,$_POST['username']);
+
+  $update="UPDATE `attendant` SET `location` = '$location', `Fname` = '$Fname', `Lname` = '$Lname', `mobile_no` = '$mobile_no', `username` = '$username' WHERE `attendant`.`id_attendant`='$edit_id';";
+    $run_update=mysqli_query($con,$update);
+    if($run_update){
+      echo"<script>alert('Successful updated')</script>";
+      echo"<script>window.open('basic_table2.php','_self')</script>";
+
+    }
+    else{
+      echo"<script>alert('Error please try again')</script>";
+      echo"<script>window.open('basic_table2.php','_self')</script>";
+    }
+}
+
+?>
+      <footer class="site-footer">
+          <div class="text-center">
+              &copy; <?php echo date("Y"); ?> Copyright.
+              <a href="blank.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
       <!--footer end-->
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>

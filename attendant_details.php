@@ -1,11 +1,7 @@
 <?php
 require 'mysqlConnect.php';
-@session_start();
-
-
-
+//session_start();
 $username = $_SESSION['username'];
-
 $select_att = "SELECT * FROM `attendant` WHERE `username`='$username'";
 $att_result = mysqli_query($con, $select_att);
 

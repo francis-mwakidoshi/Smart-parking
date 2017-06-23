@@ -2,6 +2,7 @@
 session_start();
 require 'mysqlConnect.php';
 require 'update_slots.php';
+require "driver.details.php";
 if (!$_SESSION['driver_email']) {
   header("location: index.php");
 }
@@ -57,6 +58,10 @@ else {
   color: #FF0000 !important;
 }
 .modal { background: rgba(000, 000, 000, 0.8); min-height:1000000px; }
+
+.fa-circle {
+  color: green;
+}
     </style>
 </head>
 <body>
@@ -75,6 +80,19 @@ else {
      
          <div class="cart-nav col-xs-4">
            <ul>
+             <li class="list-group-item" id="requests">           
+                <div class="thumbnail">              
+                      <div class="caption">
+                      <center>
+                        <h3><?=$name?></h3>
+                        <p>(<?=$email?>)</p>
+                        <p><i id="#online" class="fa fa-circle" aria-hidden="true"></i> Online</p>
+                        <p><a href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i> lOGOUT</a></p>
+                        </center>
+                      </div>
+                    </div>                   
+             </li> 
+
              <li class="list-group-item" >
                <select class="form-control" onchange="filter_park()" id="city">
                  <option value="Mombasa">Mombasa</option>
@@ -92,7 +110,7 @@ else {
 
              <li class="list-group-item" id="requests"><a><span class="glyphicon glyphicon-envelope"></span> Notifications</a></li>
 
-             <li class="list-group-item" id="requests"><a href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i> lOGOUT</a></li>             
+            
            </ul>
          </div>
 
