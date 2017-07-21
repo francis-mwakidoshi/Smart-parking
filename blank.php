@@ -55,7 +55,7 @@ session_start();
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-                  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <p class="centered"><a href="#"><img src="assets/img/assistant-144.png" class="img-circle" width="60"></a></p>
                   <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
                   <li class="mt">
                       <a href="admin.php">
@@ -110,6 +110,24 @@ session_start();
             <input type="text" class="form-control" placeholder="Number of remaining slot" name="remaining_slots">
           </div>
         </div>
+
+        <div class="form-group">
+          <div class="col-sm-10">
+              <select name="attendant" class="form-control">
+                <option value="">Select Attendant</option>          
+            <?php
+              $select = "SELECT * FROM `attendant`";
+              $result = mysqli_query($con, $select);
+              while($attendant = mysqli_fetch_array($result)){
+                ?>
+                  <option value="<?=$attendant['username']?>"><?=$attendant['Fname'].' '.$attendant['Lname']?></option>
+                <?php
+              }
+            ?>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
           <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="Amount" name="price">

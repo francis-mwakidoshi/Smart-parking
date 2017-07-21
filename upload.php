@@ -9,6 +9,7 @@ if(isset($_POST['sub'])){
 	$slot=mysqli_real_escape_string($con,$_POST['slot']);
 	$remaining_slots=mysqli_real_escape_string($con,$_POST['remaining_slots']);
 	$price=mysqli_real_escape_string($con,$_POST['price']);
+	$attendant=mysqli_real_escape_string($con,$_POST['attendant']);
 
 
 	   if($location==''&& $street==''&& $name=='' && $slot=='' && $price=='' && $remaining_slots==''){
@@ -19,7 +20,7 @@ if(isset($_POST['sub'])){
 
 	else{
 
-		$insert="INSERT INTO `parkings` (`id`, `location`, `street`, `name`, `slot` , `price`,`remaining_slots`) VALUES (NULL, '$location', '$street', '$name', '$slot' , '$price','$remaining_slots');";
+		$insert="INSERT INTO `parkings` (`id`, `location`, `street`, `name`, `slot` , `price`,`remaining_slots`,'attendant') VALUES (NULL, '$location', '$street', '$name', '$slot' , '$price','$remaining_slots','$attendant');";
 		$run_insert=mysqli_query($con,$insert);
 		if($run_insert){
 			echo"<script>alert('Successful added!')</script>";

@@ -45,6 +45,11 @@ require 'attendant_details.php';
             <!--logo start-->
             <a href="index.php" class="logo"><b>Smart-parking</b></a>
             <!--logo end-->
+               <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="logout.php" style="background-color:#ffd777;">Logout</a></li>
+            	</ul>
+            </div>
 
         </header>
       <!--header end-->
@@ -57,11 +62,9 @@ require 'attendant_details.php';
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-
-                    <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                    <h5 class="centered" style="text-transform:uppercase;"> <?=$fname ." ".$lname; ?></h5>
-
+                    
                   <li class="mt">
+                  <a><h5  style="text-transform:uppercase;"> <?=$fname ." ".$lname; ?></h5></a>
                       <a href="attendant_portal.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>

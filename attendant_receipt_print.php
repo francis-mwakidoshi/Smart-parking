@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Print Invoice (Paid)</title>
+    <title>Receipt</title>
 
            <link href="assets/css/bootstrap.css" rel="stylesheet">  
            <link href="dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
@@ -57,17 +57,21 @@ while ($request = mysqli_fetch_array($res)) {
     $street = $request['street'];
     $parking_id = $request['parking_id'];
 
-  $time = time();
-  $secs = strtotime($when );
 
+
+$date = new DateTime($when);
+  $time = time();
+  $secs = $date->getTimestamp();
   $diff = $time-$secs;
   $diff_h = $diff/3600; 
+$current=date('Y-m-d H:i:s a',time());
 
-  $amount_charged = round($diff_h * $cost); 
+  $amount_charged = $diff_h * $cost/60; 
 
   $exceeded_time =round(abs($diff_h-$hours));
+ 
+$TimeDiff=(strtotime($current)-strtotime($when))/3600;
 
-  
     if($stat=='requested'){
             $update_request = "UPDATE `requests` SET `status`='Completed' WHERE `id`='$id'";
             $update_parkings = "UPDATE `parkings` SET `remaining_slots`=`remaining_slots`+'1' WHERE `id`='$parking_id'";

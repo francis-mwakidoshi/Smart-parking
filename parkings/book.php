@@ -5,7 +5,7 @@ require '../update_slots.php';
 
 if($_POST){
 
-  $slot_no = $_POST['slot_no'];
+  $slot_no = 1;
   $slots_cost = $_POST['slots_cost'];
   $slot_id = $_POST['slot_id'];
   $slot_hours = $_POST['slot_hours'];

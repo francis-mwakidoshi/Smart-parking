@@ -1,6 +1,7 @@
 <?php
 require 'mysqlConnect.php';
 require 'update_slots.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,7 @@ require 'update_slots.php';
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-                  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <p class="centered"><a href="#"><img src="assets/img/assistant-144.png" class="img-circle" width="60"></a></p>
                   <h5 class="centered"> <?php echo $_SESSION['email']; ?></h5>
                   <li class="mt">
                       <a href="admin.php">
@@ -96,11 +97,20 @@ require 'update_slots.php';
         </div>
         <div class="form-group">
           <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="location" name="location">
+              <select name="location" class="form-control">
+                <option value="">Select Street</option>
+                 <option value="Tudor">Tudor</option>
+                 <option value="Kizingo">Kizingo</option>
+                 <option value="Tononoka">Tononoka</option>
+              </select>
           </div>
+          </div>
+          <div class="form-group">
           <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="username" name="username">
           </div>
+          </div>
+          <div class="form-group">
           <div class="col-sm-10">
             <input type="text" class="form-control" placeholder="Password" name="password">
           </div>

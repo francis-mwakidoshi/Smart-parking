@@ -124,15 +124,14 @@ $(function(){
   });
 
 $("#select<?=$parking_id; ?>").click(function(){
-  var slot_no1 = $("#slot<?=$parking_id ; ?>").val();
   var slots_cost1 = $("#total<?=$parking_id; ?>").html()  ;
   var slot_id1 = "<?=$parking_id; ?>";
   var slot_hours1 = $("#hour<?=$parking_id; ?>").val();
     if(slots_cost1 > 0){
-        if(slot_no1==''||slot_hours1==''){
+        if(slot_hours1==''){
              $("#slot_status<?=$parking_id; ?>").html("Fill in input fields first").css("color", "red");
         }else{
-          $.post("parkings/book.php",{slot_no:slot_no1, slots_cost:slots_cost1, slot_hours:slot_hours1, slot_id:slot_id1}, function(data){
+          $.post("parkings/book.php",{slots_cost:slots_cost1, slot_hours:slot_hours1, slot_id:slot_id1}, function(data){
              $("#slot_status<?=$parking_id; ?>").html(data);
           })
         }
@@ -261,17 +260,20 @@ $(function(){
 $("#select<?=$parking_id; ?>").click(function(){
   var slot_id1 = "<?=$parking_id; ?>";
   var slot_hours1 = $("#hour<?=$parking_id; ?>").val();
-    if(slots_cost1 > 0){
+  var slots_cost1 = $("#total<?=$parking_id; ?>").html()  ;
+    
         if(slot_hours1==''){
              $("#slot_status<?=$parking_id; ?>").html("Fill in input fields first").css("color", "red");
         }else{
+          if(slots_cost1 > 0){
           $.post("parkings/book.php",{ slots_cost:slots_cost1, slot_hours:slot_hours1, slot_id:slot_id1}, function(data){
              $("#slot_status<?=$parking_id; ?>").html(data);
           })
+          }else{
+            alert("Invalid Price Value, INput the correct value for hours and slot");
+          }          
         }
-    }else{
-      alert("Invalid Price Value, INput the correct value for hours and slot");
-    }
+
 })
 
 

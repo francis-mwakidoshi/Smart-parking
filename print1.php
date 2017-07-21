@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Print Invoice (Not Paid)</title>
+    <title>Invoice (Not Paid)</title>
 
     <link href="assets/css/bootstrap.css" rel="stylesheet">  
            <link href="dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
