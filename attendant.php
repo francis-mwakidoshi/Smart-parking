@@ -138,6 +138,7 @@ if(isset($_POST['sub'])){
   $location=mysqli_real_escape_string($con,$_POST['location']);
   $username=mysqli_real_escape_string($con,$_POST['username']);
   $password=mysqli_real_escape_string($con,$_POST['password']);
+  $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
   if($Fname==''&& $Lname==''&& $mobile_no=='' && $location==''){
 		echo"<script>alert('please fill all field')</script>";

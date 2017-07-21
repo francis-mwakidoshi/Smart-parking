@@ -7,7 +7,9 @@ if(isset($_POST['register'])){
   $name=mysqli_real_escape_string($con,$_POST['name']);
 	$email=mysqli_real_escape_string($con,$_POST['email']);
 	$password=mysqli_real_escape_string($con,$_POST['password']);
-  $password_confirm=mysqli_real_escape_string($con,$_POST['password_confirm']);
+    $password_confirm=mysqli_real_escape_string($con,$_POST['password_confirm']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+	$password_confirm= password_hash($_POST['password_confirm'], PASSWORD_DEFAULT);
 
 	if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
 		echo"<script>alert('your email is not valid!')</script>";

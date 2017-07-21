@@ -79,25 +79,42 @@ require 'mysqlConnect.php';
     <script>
         $.backstretch("assets/img/Smp.jpg", {speed: 500});
     </script>
-    <?php
-  if(isset($_POST['attendant_login'])){
-  $password=mysqli_real_escape_string($con,$_POST['password']);
-  $username=mysqli_real_escape_string($con,$_POST['username']);
+  
+  <?php
+if(isset($_POST['attendant_login'])){
+$password=mysqli_real_escape_string($con,$_POST['password']);
+$username=mysqli_real_escape_string($con,$_POST['username']);
 
-  $sel="select * from attendant where username='$username' AND password='$password'";
-  $run=mysqli_query($con,$sel);
-  $check=mysqli_num_rows($run);
-  if($check==0)
+$sel="select * from attendant where username='$username'";
+$result=mysqli_query($con,$sel);
+if(mysqli_num_rows($result) > 0)
+{
+
+  while($row = mysqli_fetch_array($result))
   {
-  	echo"<script>alert('password or username is not correct,try again!')</script>";
-  	exit();
+    if(password_verify($password, $row["password"]))
+    {
+      //return true
+      $_SESSION['username']=$username;
+      echo"<script>window.open('attendant_portal.php','_self')</script>";
+    }
+    else
+    {
+      //return false
+       echo"<script>alert('wrong user details,try again!')</script>";
+       echo"<script>window.open('attendant_login.php','_self')</script>";
+       exit();
+    }
   }
-  else{
-  	$_SESSION['username']=$username;
-  	echo"<script>window.open('attendant_portal.php','_self')</script>";
-  }
-  }
-  ?>
+}
+else{
+
+    echo"<script>alert('wrong user details,try again!')</script>";
+    echo"<script>window.open('attendant_login.php','_self')</script>";
+    exit();
+}
+}
+?>
 
   </body>
 </html>
