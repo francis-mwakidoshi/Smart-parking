@@ -101,8 +101,8 @@ require 'attendant_details.php';
                       <th>Print </th>
                       </tr>
 <?php
-$sel="SELECT `requests`.`id`, `slots`, `hours`, `cost`, `customer`, `time`, `status`,`name` FROM `requests`,`parkings` WHERE `parkings`.`id`=`requests`.`parking_id`";
-$run=mysqli_query($con,$sel);
+$sel="SELECT `requests`.`id`, `slots`, `hours`, `cost`, `customer`, `time`, `status`,`name` FROM `requests`,`parkings` WHERE `parkings`.`id`=`requests`.`parking_id` AND `parkings`.`attendant`='{$_SESSION['username']}'";
+$run=mysqli_query($con,$sel)or die(mysqli_error($con));
 $i=0;
 while($row=mysqli_fetch_array($run)){
 $id=$row['id'];

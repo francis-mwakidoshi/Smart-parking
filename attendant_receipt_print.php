@@ -58,6 +58,7 @@ while ($request = mysqli_fetch_array($res)) {
     $parking_id = $request['parking_id'];
 
 
+<<<<<<< HEAD
 
 $date = new DateTime($when);
   $time = time();
@@ -71,6 +72,30 @@ $current=date('Y-m-d H:i:s a',time());
   $exceeded_time =round(abs($diff_h-$hours));
  
 $TimeDiff=(strtotime($current)-strtotime($when))/3600;
+=======
+
+
+$now = new DateTime();
+$now->setTimezone(new DateTimeZone('Africa/Nairobi'));
+$before = new DateTime($when);
+$interval = $now->diff($before);
+$elapsed_h = $interval->format('%y years %m months %a days %h hours %i minutes %s seconds');
+$h = $interval->format('%h');
+$d = $interval->format('%a');
+$m = $interval->format('%i');
+$s = $interval->format('%s');
+
+$ttotal = $d *60*24 + $h * 60 + $m; 
+$totalt = round($ttotal / 60);
+$exceeded_time =round(abs($totalt-$hours));
+$min_cost = $cost/60;
+if ($ttotal>60) {
+    $charge = (float)($totalt * $cost);
+} else {
+    $charge =  "500/=" ;
+}
+
+>>>>>>> 301e68f7ece8c2d747b00e24258b5f813a4ef09e
 
     if($stat=='requested'){
             $update_request = "UPDATE `requests` SET `status`='Completed' WHERE `id`='$id'";
@@ -106,7 +131,7 @@ $TimeDiff=(strtotime($current)-strtotime($when))/3600;
 
 <tr>
 <td>Number Of Hours:</td> 
-<td><?=$hours; ?> Hours</td>
+<td><?=$totalt; ?> Hours</td>
 </tr>
 
 <tr>
@@ -116,7 +141,7 @@ $TimeDiff=(strtotime($current)-strtotime($when))/3600;
 
 <tr>
 <td>Amount Charged:</td> 
-<td>Ksh. <?=$amount_charged; ?></td>
+<td>Ksh. <?=$charge; ?></td>
 </tr>
 
 <tr>
@@ -127,7 +152,7 @@ $TimeDiff=(strtotime($current)-strtotime($when))/3600;
 <tr>
 <td>Status:</td>
 <td><?php
-if($diff_h >= $hours){
+if($totalt >= $hours){
     ?>
       Time Was Exceeded by <?=$exceeded_time;?> Hours
     <?php

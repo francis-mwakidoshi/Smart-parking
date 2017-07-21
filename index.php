@@ -201,7 +201,7 @@ $(".modal-transparent").on('hidden.bs.modal', function () {
          
              
 
-           <form action="index.php" method="POST" id="">
+           <form enctype="multipart/form" action="index.php" method="POST" id="">
                    <div class="page-header">
                      <center><h3 class="colors">Login</h3></center>
                    </div>
@@ -229,17 +229,33 @@ if(isset($_POST['login'])){
 $password=mysqli_real_escape_string($con,$_POST['password']);
 $email=mysqli_real_escape_string($con,$_POST['email']);
 
-$sel="select * from users where email='$email' AND password='$password'";
-$run=mysqli_query($con,$sel);
-$check=mysqli_num_rows($run);
-if($check==0)
+$sel="select * from users where email='$email'";
+$result=mysqli_query($con,$sel);
+if(mysqli_num_rows($result) > 0)
 {
-echo"<script>alert('password or email is not correct,try again!')</script>";
-exit();
+
+  while($row = mysqli_fetch_array($result))
+  {
+    if(password_verify($password, $row["password"]))
+    {
+      //return true
+      $_SESSION['driver_email']=$email;
+      echo"<script>window.open('home.php','_self')</script>";
+    }
+    else
+    {
+      //return false
+       echo"<script>alert('wrong user details,try again!')</script>";
+       echo"<script>window.open('index.php','_self')</script>";
+       exit();
+    }
+  }
 }
 else{
-$_SESSION['driver_email']=$email;
-echo"<script>window.open('home.php','_self')</script>";
+
+    echo"<script>alert('wrong user details,try again!')</script>";
+    echo"<script>window.open('index.php','_self')</script>";
+    exit();
 }
 }
 ?>
