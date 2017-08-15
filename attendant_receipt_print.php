@@ -58,21 +58,7 @@ while ($request = mysqli_fetch_array($res)) {
     $parking_id = $request['parking_id'];
 
 
-<<<<<<< HEAD
 
-$date = new DateTime($when);
-  $time = time();
-  $secs = $date->getTimestamp();
-  $diff = $time-$secs;
-  $diff_h = $diff/3600; 
-$current=date('Y-m-d H:i:s a',time());
-
-  $amount_charged = $diff_h * $cost/60; 
-
-  $exceeded_time =round(abs($diff_h-$hours));
- 
-$TimeDiff=(strtotime($current)-strtotime($when))/3600;
-=======
 
 
 $now = new DateTime();
@@ -95,7 +81,6 @@ if ($ttotal>60) {
     $charge =  "500/=" ;
 }
 
->>>>>>> 301e68f7ece8c2d747b00e24258b5f813a4ef09e
 
     if($stat=='requested'){
             $update_request = "UPDATE `requests` SET `status`='Completed' WHERE `id`='$id'";
