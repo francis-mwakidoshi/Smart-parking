@@ -22,17 +22,10 @@ require 'update_slots.php';
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-           <link href="assets/css/bootstrap.css" rel="stylesheet">  
+           <link href="assets/css/bootstrap.css" rel="stylesheet">
            <link href="dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
            <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-          <link rel="stylesheet" href="dataTables/js/reports-plugins/buttons.dataTables.min.css"/>      
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
-    <![endif]-->
+          <link rel="stylesheet" href="dataTables/js/reports-plugins/buttons.dataTables.min.css"/>
 
   </head>
 
@@ -97,7 +90,7 @@ require 'update_slots.php';
                       <th>hour</th>
                       <th>cost</th>
                       <th>Customer</th>
-                      <th>Status</th>           
+                      <th>Status</th>
                       </tr>
                       </thead>
 <?php
@@ -178,17 +171,17 @@ if(isset($_GET['delete']))
         <script type="text/javascript" src="dataTables/js/jquery.min.js"></script>
          <script type="text/javascript" src="dataTables/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="dataTables/js/jquery.dataTables.min.js"></script>
-       
+
         <script src="dataTables/js/reports-plugins/dataTables.buttons.min.js"></script>
         <script src="dataTables/js/reports-plugins/jszip.min.js"></script>
         <script src="dataTables/js/reports-plugins/pdfmake.min.js"></script>
         <script src="dataTables/js/reports-plugins/vfs_fonts.js"></script>
         <script src="dataTables/js/reports-plugins/buttons.flash.min.js"></script>
         <script src="dataTables/js/reports-plugins/buttons.html5.min.js"></script>
-        <script src="dataTables/js/reports-plugins/buttons.print.min.js"></script>     
+        <script src="dataTables/js/reports-plugins/buttons.print.min.js"></script>
         <script>
           function loadData(){
-           
+
              $(".table").DataTable({
                  dom: 'Bflirt',
                  buttons: [

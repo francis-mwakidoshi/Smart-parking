@@ -23,11 +23,7 @@ session_start();
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  
 <!-- Bootstrap Core CSS -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="jquery/jquery.min.js"></script>
@@ -92,7 +88,7 @@ session_start();
                  <option value="Tudor">Tudor</option>
                  <option value="Kizingo">Kizingo</option>
                  <option value="Tononoka">Tononoka</option>
-              </select>           
+              </select>
           </div>
         </div>
         <div class="form-group">
@@ -114,7 +110,7 @@ session_start();
         <div class="form-group">
           <div class="col-sm-10">
               <select name="attendant" class="form-control">
-                <option value="">Select Attendant</option>          
+                <option value="">Select Attendant</option>
             <?php
               $select = "SELECT * FROM `attendant`";
               $result = mysqli_query($con, $select);
