@@ -46,24 +46,11 @@ require 'update_slots.php';
 
 /* .modal-transparent */
 
-.modal-transparent {
-  background: transparent;
-}
-.modal-transparent .modal-content {
-  background: transparent;
-}
-.modal-backdrop.modal-backdrop-transparent {
-  background: #000;
-}
-.modal-backdrop.modal-backdrop-transparent.in {
-  opacity: .9;
-  filter: alpha(opacity=90);
+#regForm label{
+color: #000 !important; /* makes the text-black */
 }
 
-.modal-backdrop {
-   background-color: #9e9e9e;
-   opacity:0.8 !important;
-}
+
 </style>
 <script type="text/javascript">
 function checkPass()
@@ -167,7 +154,7 @@ $(".modal-transparent").on('hidden.bs.modal', function () {
           <form  id="regForm" action="register.php" method="POST" enctype="multipart/form-data">
 
   <div class="form-group">
-      <label for="name">Name:</label>
+      <label for="name" >Name:</label>
       <input type="text" name="name" id="name"  class="text ui-widget-content ui-corner-all">
   </div>    
 
@@ -213,7 +200,7 @@ $(".modal-transparent").on('hidden.bs.modal', function () {
 
              <button type="submit" name="login">login</button>
               <label for=""></label>
-              <button type="button" data-toggle="modal" data-target="#myModal">Sign Up</button>>
+              <button type="button" data-toggle="modal" data-target="#myModal">Sign Up</button>
 
 
            </form>
